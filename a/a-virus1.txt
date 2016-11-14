@@ -1,0 +1,340 @@
+ Following is the text of the announcement that appeared on the
+ VMSHARE teleconference the evening of Dec. 14, 1989.
+ =======================================================================
+
+ Append on 12/14/89 at 06:48 by Jeff Gribbin - Rolls-Royce Plc:
+
+ A number of Rolls-Royce personnel have been the target of a mailshot
+ containing a diskette and documentation which is reproduced in full
+ below. if you follow the supplied instructions the program trashes
+ your "C" drive.  A few phone calls indicates that this is not merely
+ a few people at Rolls-Royce who've been targetted - whoever is behind
+ this has spent a lot of money on it.  We've not lost anything
+ ourselves (yet), but the packaging makes this look very much like the
+ kind of demo diskette that we all receive weekly if not daily.  It's
+ clearly designed to encourage you to use the package (although indeed
+ the so-called "License Agreement" is very cleverly worded) and will
+ certainly catc h the naive and the hurried.  Please warn yuor
+ friends.
+
+ If anyone has an address for "PC Cyborg Ltd" please be wary of
+ publishing it a s you may thereby become an accessory before the
+ fact to a case of killing by physical dismemberment ...
+
+ ===== following is the text that accompanies the diskette =========
+
+                    AIDS Information - Introductory Diskete
+
+ Please find enclosed a computer diskette containing health
+ information on the disease AIDS.  The information is provided in the
+ form of an interactive computer program.  It is easy to use.  Here
+ is how it works:
+ * The program provides you with information about AIDS and asks you
+   questions.
+ * The program then provides you with a confidential report on your
+   risk of exposure to AIDS.
+ * The program provides recommendations to you, based on the life
+   history information that you have provided, about practical steps
+   that you can take to reduce your risk of getting AIDS.
+ * The program gives you the opportunity to make comments and ask
+   questions that you may have about AIDS.
+ * This program is designed specially to help members of the public
+   who are concerned about AIDS and medical professionals.
+
+ Instructions This software is designed for use with IBM PC/XT
+ microcomputers and with all other truly compatable microcomputers.
+ Your computer must have a hard disk drive C, MS-DOS version 2.0 or
+ higher, and a minimum of 256K RAM.  First read and assent to the
+ limited warranty and to the license agreement on the reverse.  (If
+ you use this diskette, you will have to pay the mandatory software
+ leasing fee(s).) Then do the following:
+ Step 1: Start your computer (with diskette drive A empty)
+ Step 2: Once the computer is running, insert the Introductory
+         Diskette into drive A.
+ Step 3: At the C> prompt of your root directory type: A:INSTALL and
+         then press ENTER.  Installation proceeds automatically from
+         that point.  It takes only a few minutes.
+ Step 4: When the installation is completed, you will be given easy
+         to follow messsages by the computer.  Respond accordingly.
+ Step 5: When you want to use the program, type the word AIDS at the
+         C> prompt in the root directory and press ENTER.
+ .....
+ Limited Warranty
+ .....
+ If the diskette containing the program is defective, PC Cyborg
+ Corporation will replace it at no charge.  This remedy is your sole
+ remedy.  These programmes and documentation are provided 'as is'
+ without any warranty of any kind, either express or implied,
+ including but not limited to the implied warranties of
+ merchantability and fitness for a particular purpose.  The entire
+ risk as to the quality and performance of the programs is with you.
+ Should the programs prove defective, you (and not PC Cyborg
+ Corporation or its dealers) assume the entire cost of all necessary
+ servicing, repair or correction.  In no event will PC Cyborg
+ Corporation be liable to you for any damages, including any loss of
+ profits, loss of savings, business interruption, loss of business
+ information or other incidental, consequntial, or special damages
+ arising out of the use of or inhability to use these programs, even
+ if PC Cyborg Corporation has been advised of the possibility
+ of such damages, or for any claim by any other party.
+ .....
+ License Agreement
+ .....
+ Read this licence agreement carefully.  If you do not agree with the
+ terms and conditions stated below, do not use this software, and do
+ not break the seal (if any) on the software diskette.  PC Cyborg
+ Corporation retains the title and ownership of these programs and
+ documentation but grants a license to you under the following
+ conditions: You may use the program on microcomputers, and you may
+ copy the programs for archival purposes and for purposes specified
+ in the programs themselves.  However you may not decompile,
+ disassemble, or reverse-engineer these programs or modify them in
+ any way without consent from PC Cyborg Corporation.  These programs
+ are provided for your use as described above on a leased basis to
+ you; they are not sold.  You may choose one of the following types
+ of lease (a) a lease for 365 user applications or (b) a lease for
+ the lifetime of your hard disk drive or 60 years, whichever is the
+ lesser.  PC Cyborg Corporation may include mechanisms in the
+ programs to limit or inhibit copying and to ensure that you abide by
+ the terms of the licence agreement and to the terms of the lease
+ duration.  There is a mandatory leasing fee for these programs; they
+ are not provided to you free of charge.  The prices for "lease a"
+ and "lease b" mentioned above are US$189 and US$378 respectively
+ (subject to change without notice).  If you install these programs
+ on a microcomputer (by the install program or by the share program
+ option or by any other means), then under the terms of this licence
+ you thereby agree to pay PC Cyborg Corporation in full for the cost
+ of leasing these programs.  In the case of your breach of this
+ license agreement, PC Cyborg Corporation reserves the right to take
+ any legal action necessary to recover any outstanding debts payable
+ to PC Cyborg Corporation and to use program mechanisms to ensure
+ termination of your use of the programs.  These program mechanisms
+ will adversly affect other program applications on microcomputers.
+ You are hereby advised of the most serious consequences of your
+ failure to abide by the terms of this agreement: your conscience may
+ haunt you for the rest of your life; you will owe compensation and
+ possible damages to PC Cyborg Corporation; and your microcomputer
+ will stop functioning normally.  Warning: Do not use these programs
+ unless you are prepared to pay for them.  You are strictly
+ prohibited from sharing these programs with others, unless: the
+ programs are accompanied by all program documentation including this
+ license agreement; you fully inform the recipient of the terms of
+ this agreement; and the recipient assents to the terms of this
+ agreement, including the mandatory payments to PC Cyborg
+ Corporation.  PC Cyborg Corporation does not authorize you to
+ distribute or use these programs in the United States of America.
+ If you have any doubt about your willingness or ability to meet the
+ terms of this license agreement or if you are not prepared to pay
+ all amounts due to PC Cyborg Corporation, then do not use these
+ programs.  No modification to this agreement shall be binding unless
+ specifically agreed upon in writing by PC Cyborg Corporation.
+ .....
+ Programs copyright PC Cyborg Corporation, 1989 Compiler runtime
+ module copyright Microsoft Corporation, 1982-1987.  All Rights
+ Reserved.  IBM is a registered tardemark of International Business
+ Machines Corporation.  PC/XT is a trademark of International
+ Business Machines Corporation.  Microsoft and MS-DOS are registered
+ trademarks of Microsoft Corporation.
+ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+ Whoever would have predicted THIS side effect of computing-for-all.
+ life's certainly changed in the last few years, oh well.
+
+ Jeff (I'd rather be writing something useful) Gribbin
+
+ *** APPENDED 12/14/89 06:48:34 BY _RR/JEFF ***
+
+ Received: by PUCC (Mailer R2.06X) id 8563; Tue, 12 Dec 89 20:54:04
+ Date:         Tue, 12 Dec 89 11:26:29 PST
+ Sender:       Virus Alert List 
+ From:         portal!cup.portal.com!Alan_J_Roberts@SUN.COM
+ Comments: To: VALERT-L@ibm1.cc.lehigh.edu
+ Subject:      Major Trojan Warning
+
+ This is an urgent forward from John McAfee:
+
+ A distribution diskette from a corporation calling itself PC Cyborg
+ has been widely distributed to major corporations and PC user groups
+ around the world and the diskette contains a highly destructive
+ trojan.  The Chase Manhattan Bank and ICL Computers were the first
+ to report problems with the software.  All systems that ran the
+ enclosed programs had all data on the hard disks destroyed.
+ Hundreds of systems were affected.  Other reports have come in from
+ user groups, small businesses and individuals with similar problems.
+ The professionally prepared documentation that comes with the
+ diskette purports that the software provides a data base of AIDS
+ information.  The flyer heading reads - "AIDS Information - An
+ Introductory Diskette".  The license agreement on the back of the
+ same flyer reads:
+
+ "In case of breach of license, PC Cyborg Corporation reserves the
+ right to use program mechanisms to ensure termination of the use of
+ these programs.  These program mechanisms will adversely affect
+ other program applications on microcomputers.  You are hereby
+ advised of the most serious consequences of your failure to abide by
+ the terms of this license agreement."
+
+ Further in the license is the sentence: "Warning: Do not use these
+ programs unless you are prepared to pay for them".
+
+ If the software is installed using the included INSTALL program, the
+ first thing that the program does is print out an invoice for the
+ software.  Then, whenever the system is re-booted, or powered down
+ and then re-booted from the hard disk, the system self destructs.
+
+ Whoever has perpetrated this monstrosity has gone to a great deal of
+ time, and more expense, and they have clearly perpetrated the
+ largest single targeting of destructive code yet reported.  The
+ mailings are professionally done, and the style of the mailing
+ labels indicate the lists were purchased from professional mailing
+ organizations.  The estimated costs for printing, diskette, label
+ and mailing is over $3.00 per package.  The volume of reports imply
+ that many thousands may have been mailed.  In addition, the British
+ magazine "PC Business World" has included a copy of the diskette
+ with its most recent publication - another expensive avenue of
+ distribution.  The only indication of who the perpetrator(s) may be
+ is the address on the invoice to which they ask that $378.00 be
+ mailed:
+
+           PC Cyborg Corporation
+           P.O. Box 871744
+           Panama 7, Panama
+
+ Needless to say, a check for a registered PC Cyborg Corporation in
+ Panama turned up negative.
+
+ An additional note of interest in the license section reads: "PC
+ Cyborg Corporation does not authorize you to distribute or use these
+ programs in the United States of America.  If you have any doubt
+ about your willingness or ability to meet the terms of this license
+ agreement or if you are not prepared to pay all amounts due to PC
+ Cyborg Corporation, then do not use these programs".
+
+ John McAfee
+
+ <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>  <>
+
+ Received: by PUCC (Mailer R2.06X) id 2785; Wed, 13 Dec 89 18:05:45 EST
+ Date:         Wed, 13 Dec 89 18:02:50 EST
+ Sender:       Virus Alert List 
+ Comments:     Resent-From: Kenneth R. van Wyk 
+ Comments:     Originally-From: Alan Jay 
+ From:         "Kenneth R. van Wyk" 
+ Subject:      Re: AIDS DISK UPDATE (I)
+
+               AIDS INFORMATION DISK
+               =====================
+
+ The latest on this is as follows:
+
+ If you have run this disk contact ROBERT WALCZY at PC Business World
+ on 01-831 9252 they have a FREE disk that combats the effects of the
+ disk and they will send a copy to users effected.
+
+ Either call Robert of FAX him on 01-405 2347 with your name and
+ address.
+
+ The disk should be available in the next day or two.
+
+ The program will be available on CONNECT (01-863 6646) for download
+ as soon as it has been tested.
+
+ =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+ The AIDS disk when installed creates a number of hidden files and
+ directories.  You can remove these files by running the program
+ mentioned above or by using the Norton Utilities, PC Tools or
+ equivalent program.
+
+ The files that are hidden include a new AUTOEXEC.BAT and a number of
+ other files and directories that contain characters that can not be
+ accessed by standard DOS commands.  You will need to rename the
+ files/ directories before they can be deleted.
+
+ This information will be updated as we learn more about the disk.
+
+ Alan Jay -- The IBM PC User Group -- 01-863 1191.
+
+ *** APPENDED 12/14/89 09:17:07 BY PU/MELINDA ***
+
+ Append on 12/14/89 at 09:59 by Melinda Varian :
+
+ Received: by PUCC (Mailer R2.06X) id 9330; Thu, 14 Dec 89 07:45:07 EST
+ Date:         Thu, 14 Dec 89 07:42:06 EST
+ Sender:       Virus Alert List 
+ Comments:     Resent-From: Kenneth R. van Wyk 
+ Comments:     Originally-From: Alan Jay 
+ From:         "Kenneth R. van Wyk" 
+ Subject:      Re: AIDS -- UPDATE II -- What can you do.
+
+                    AIDS INFORMATION DISK
+                    =====================
+
+ Update 2  13-Dec-1989 6pm
+
+ IF you have not run this disk DO NOT INSTALL it appears to be a very
+ cleverly written TROJAN program that can be activated by a number of
+ methods.  Currently the activation method that has been detected
+ uses a counter of the number of system reboots.  When the counter
+ gets to 90 the system goes into a second phase and encrypts files
+ and directories on your hard disk.
+
+ The program appears to have a number of embelisments that makes one
+ think that the front door we have been shown MAY not be the only
+ method that the system uses for deciding when to activate.  This is
+ a very nasty program and the only 100% safe thing to do is to backup
+ all DATA files and perform a full reformat of your hard disk.
+
+ Followed by a reinstallation of all DATA, from your backup, and
+ programs from original system disks (or backup prior to installing
+ this software).
+
+ This should only be attempeted once at least TWO copies of all
+ valuable data have been extracted from the system.  Please remember
+ to boot your system off an original DOS disk before starting this
+ procedure.
+
+ Full details of the suggested procedure will be posted tomorrow.
+
+ Alan Jay
+
+ Readers who do not wish to follow this route may be interested to in
+ the folowing information about the primary activation system.
+
+ 1)  A hidden 'ACTOEXEC.BAT' file contains
+
+ CD \
+ REM
+
+    it then runs your AUTOEXEC.BAT which the program renamed AUTO.BAT
+
+ 2) A hidden subdirectory  contains a file REM.EXE
+
+ Each time the system is booted the program is run and the counter
+ incremented/decremented.  After 90 activations the system enters
+ phase TWO.
+
+ Please note that the system uses the  character 'hi space'
+ in the file names to stop standard DOS procedures acting on these
+ files.
+
+ IT MAY be possible to delete these entries and thereby disable the
+ program this is NOT certain and it will take several months to
+ discover if this is a safe course of events to take.
+
+ I hope that this information helps.  I also understand that this is
+ in the hands of the Fraud Squad / Computer Crime Division of the
+ Metropolitan Police.  If you have any further information I am sure
+ that they would be interested to here from you.
+
+ Alan Jay -- IBM PC User Group -  01-863 1191
+
+ *** APPENDED 12/14/89 09:59:16 BY PU/MELINDA ***
+
+ Append on 12/14/89 at 14:02 by Rich Greenberg, Locus Computer Corp.,
+ L.A.:
+
+ The AIDS virus was mentioned on the local radio news broadcast as
+ having hit The RAND Corp in Santa Monica, Ca.  Rich
+
+ *** APPENDED 12/14/89 14:02:45 BY LCT/RICH.G ***
