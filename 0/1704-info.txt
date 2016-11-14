@@ -1,0 +1,281 @@
+            THE 1704 (CASCADE) VIRUS    
+
+    This document is copyrighted by Jim Goodwin, 1989.  It may be
+copied and distributed freely as long as no changes or deletions
+are made to any part,including this notice.
+    I would again like to thank John McAfee for his excellent
+technical assistance in helping analyze this virus in relation to
+other viruses by the same apparent author; Jim Bates for his
+initial disassembly of the variation-A virus; and Tim Sankary for
+his field work in providing epidemiological data.  And, as usual,
+a sincere note of thanks to the CVIA for their support of this and
+other virus research efforts.
+    
+OVERVIEW
+    This virus is a COM infector that increases the size of
+infected files by 1704 bytes (hence its name).  It is a memory
+resident virus, much like the Jerusalem (Friday the 13th) virus,
+and it infects programs when they are loaded and executed.  It does
+not change the date or time stamp of the infected file, and it only
+infects a given file once.  It can infect hidden and read only
+files and, unlike other generic COM infectors, it can successfully
+infect COMMAND.COM.
+    The virus encrypts itself after infection.  The encryption
+varies in relation to the file size, so each encryption will likely
+differ from every other.  This greatly complicates detection and
+analysis.
+    There are three identified variations of the virus:
+
+Variation-A:    This variation will not infect true IBM machines.
+               Only clones can be infected.  The virus activates
+               on systems with a CGA or VGA screen in the months
+               of October, November or December in the year 1988. 
+               It will replicate, however, at all times. 
+               When it activates, the characters on the screen
+               begin to individually cascade to the bottom of the
+               screen, where they collect in a pile.  The keyboard
+               is locked out during the cascade, but control is
+               returned after each occurrence has completed.  The
+               system continues to run normally with the exception
+               of the falling letters.
+
+               A randomization algorithm determines the frequency
+               of the cascade.  Empirical testing has determined
+               a mean-time between cascades to be 7 minutes.  Thus
+               it is impractical to do real work on the system
+               after the virus has activated.  
+
+               The virus can be cleaned out of memory by a soft
+               re-boot.  Reset or power down is not required. 
+               Removing all infected COM files, including
+               COMMAND.COM as a precaution, and replacing them with
+               copies from the original distribution diskettes will
+               remove the virus from hard or floppy disk.  
+               There have been no reported incidents of lasting
+               damage from this version of the virus.   Since the
+               virus only activates in 1988, few should see outward
+               signs of its presence.  It can still infect and
+               consume system resources however.  The CVIA should
+               have a working identifier/disinfector shortly.
+
+Variation-B:    This variation is identical to "A" with the
+               exception that it will infect IBM machines as well
+               as clones, and it will activate in any month from
+               August to December in any year from 1989 to 1995. 
+               The virus will also activate on VGA screens and
+               monochromes.  Activation is limited to the "cascade"
+               as described above and no known permanent damage has
+               been reported.
+
+Variation-C:    This variation is identical to "B", except
+               activation involves a low level format of the C:
+               drive.  No cascade has been reported on any
+               configuration.
+
+
+ANALYSIS:
+    The following brief code excerpts are designed to demonstrate
+the style of coding and sophistication of design for this virus. 
+Of interest here, as Mr. McAfee pointed out, is the similarity of
+the infection mechanism between this virus and the original
+(A-variety) Jerusalem virus.  It is likely that:
+
+    1.  The perpetrator of this virus worked on or was solely
+        responsible for the Jerusalem virus, or-
+    2.  The perpetrator used the Jerusalem as a model for this
+        virus.
+
+    Additionally, the communication mechanism between the memory
+resident virus and new incursions of the virus are very similar to
+the Jerusalem (see code segment below).
+    Mr. McAfee feels that differences in style in other segments
+of code point to alternative (2), and I am inclined to agree.
+
+    It is unlikely that we will see many more variations of this
+virus.  Unlike most previous viruses, even a complete disassembly
+is nearly useless to the average programmer due to the complexities
+of the encryption and host location processes.  I have given fully
+documented disassemblies to four competent (but admittedly young)
+coders, none of whom were able to reproduce a functioning virus
+from them in a reasonable time.  I was able, ultimately to develop
+a utility program that would take the object assembly file, encrypt
+the appropriate segments, and partition it onto a host of a given
+size, but I would not recommend the task to anyone.  It is
+therefore strongly indicated that all three known versions of the
+virus were produced by the same individual. 
+
+
+THE INTERESTING CODE SEGMENTS:
+
+
+The first thing Mr. McAfee noticed about the virus was that it
+would not work on DOS version 1.4.  The reason popped out very
+early in the code segment:
+
+   MOV   AH,30H                    ; FIND DOS VERSION
+   INT   21H
+   POP   BX                        ; 
+   CMP   AL,2                      ; COMPARE TO VERSION 2 OR ABOVE
+   JB    KILL_VIRUS                ; BRANCH IF LESS
+
+The tellatale communication structure between the resident version
+and subsequent infestations was a dead giveaway:
+
+   MOV   AX,4BFFH            ;INTERRUPT 21 WITH 4BFF SUBFUNCTION
+   XOR   DI,DI                     ; 
+   XOR   SI,SI
+   INT   21H
+   CMP   DI,55AAH                  ; IS ANYONE ALREADY HOME?
+   JNZ   GetOldINT21               ; NOPE. LET'S INFECT THIS SUCKER
+   JMP   KILL_VIRUS                ; YES. TOO BAD.  COMMIT SUICIDE.
+
+
+No-one is suggesting (at least not seriously) that IBM had anything
+to do with the creation of this virus.  However, they are certainly
+the only beneficiary.  This segment checks for the IBM copyright
+and if found, the virus commits harikari.
+
+   MOV   CS:[BX+DS:161H],AX        ; OLDINT21 OffSET
+   MOV   CS:[BX+DS:163H],ES        ; OLDINT21 SEGMENT
+   MOV   AX,0F000H           ; FIND WHERE THE COPYRIGHT RESIDES
+   MOV   ES,AX
+   MOV   DI,0E008H                 ; POINT TO MESSAGE
+   CMP   WORD PTR ES:[DI],4F43H    ;'OC' 
+   JNZ   INFECT_CLONE              ;       \
+   CMP   WORD PTR ES:[DI+2],5250H  ;'RP'     \
+   JNZ   INFECT_CLONE                 
+   CMP   WORD PTR ES:[DI+4],202EH  ;' .'    CHECK IBM COPYRIGHT
+   JNZ   INFECT_CLONE
+   CMP   WORD PTR ES:[DI+6],4249H  ;'BI'      / 
+   JNZ   INFECT_CLONE
+   CMP   WORD PTR ES:[DI+8],4DH    ;'M'     /
+   JZ    KILL_VIRUS
+
+
+
+The activation algorith for this virus was the most sophisticated
+any of us have ever seen.  It invloves screen types, clock settings
+and randomizations.
+
+The initial date check code follows:
+NOTE: If theclock date is 1980, which implies that no battery
+backup calendar card is present, then both INT 28H and INT1CH are
+intercepted.  If the year is 1988 and the current month is October
+or greater, then only INT 1CH is intercepted.
+
+   CMP   CX,1988                  ; IS IT 1988?
+   JA    KILL_VIRUS               ; NO, IT'S EARLIER
+   JZ    ACT01                    ; YES INDEED, THIS IS THE YEAR
+   CMP   CX,1980             ; IS IT 1980, THE YEAR OF "STAR WARS"
+   JNZ   KILL_VIRUS               ; NOPE, TOO BAD
+   PUSH  DS           
+   MOV   AX,3528H                 ; GET INT28H
+   INT   21H                      ; RANDOM BLOCK WRITE
+   MOV   CS:13BH,BX               ; OFFSET
+   MOV   CS:13DH,ES               ; SEGMENT
+   MOV   AX,2528H                 ; RESET VECTOR
+   MOV   DX,725H                  ; ORIGINAL CODE OFFSET
+   PUSH  CS
+   POP   DS                       ; DS= THIS SEGMENT
+   INT   21H
+   POP   DS                       ; RESTORE DATA SEG.
+   OR    BYTE PTR CS:157H,8  ; THIS IS PART OF ACTIVATION SWITCH
+   JMP   ACT02              
+   NOP
+ACT01:  
+   CMP   DH,0AH                   ; WHAT MONTH IS IT BROTHER?
+   JB    KILL_VIRUS          ; IT'S LESS THAN OCTOBER SO WHO CARES?
+
+
+
+The resident virus tells any new arrivals that he is already here
+and there's no room for anyone else.
+
+HERE_I_AM:
+   MOV   DI,55AAH                 ; RESIDENT SIGNATURE
+   LES   AX,DWORD PTR CS:137H     ; OLD_INT21 ADDRESS
+   MOV   DX,CS                    ; PLACE SEGMENT IN DX
+   IRET                           ; RETURN TO CALLER
+
+One of the peculiarities of this virus (and a major reason that
+McAfee et. al. don't believe that the virus author is the same as
+the Jerusalem author), is that the virus is unable to infect .EXE
+files, or any file greater than 64K for that matter.  If you all
+remember, the original Jerusalem virus author clearly new how to
+infect .EXE files, although the virus had a bug and continued to
+re-infect files until they crashed.  We feel that the author of
+this virus has limited knowledge of EXE header manipulation
+techniques.  A telling code segment:
+
+   CMP   WORD PTR CS:14DH,0       ; IS PROGRAM LESS THAN 64K?
+   JA    DON'T_INFECT             ; YES, GET THE HELL OUT OF HERE
+   CMP   WORD PTR CS:14BH,0F938H  ; 
+   JBE   L1AA9                    ; CONTINUE INFECTION
+
+This is the first virus we have seen that uses a randomization
+technique, I include it here only because it works reasonably well
+,and it's the only segment of code in the virus that could have
+positive value to anyone.
+
+RANDOMIZE:                           ; RANDOM NUMBER GENERATOR
+   PUSH  DS
+   PUSH  CS
+   POP   DS
+   PUSH  BX
+   PUSH  CX
+   PUSH  DX
+   PUSH  AX
+   MOV   CX,7
+   MOV   BX,174H                  
+   PUSH  [BX]
+LOOP1:                       
+   MOV   AX,[BX-2]
+   ADC   [BX],AX
+   DEC   BX
+   DEC   BX
+   LOOP  LOOP1
+   POP   AX
+   ADC   [BX],AX
+   MOV   DX,[BX]
+   POP   AX
+   OR    AX,AX
+   JZ    ALL_FINISHED
+   MUL   DX
+ALL_FINISHED:
+   MOV   AX,DX
+   POP   DX
+   POP   CX
+   POP   BX
+   POP   DS
+   RET_NEAR
+
+
+The timer TIC (interrupt 1C) is used during the activation part of
+the virus.
+
+At each clock tic, the virus decrements a random number.  When it
+hits Zero, the fun begins.
+
+NEW_INT1C:                        ; 6C0H
+   TEST  BYTE PTR CS:157H,9   ; CHECK ALL OTHER ACTIVATION PARAMS
+   JNZ   Quit_INT1CH
+   OR    BYTE PTR CS:157H,1       ; SET ACTIVATION PARAMS
+   DEC   WORD PTR CS:15EH         ; ONE STEP CLOSER TO THE END!!!
+   JNZ   INT1CH_RETURN            ; NOT ZERO YET, TOO BAD
+   PUSH  DS                       ; THE FUN BEGINS HERE
+
+
+Encryption is another technique that is new to viruses.  This is
+the encryption segment for the newly infected program:
+
+ENCRYPT:
+   XOR   ES:[DI],SI               ; THIS IS REVERSE OF DECRIPTION
+   XOR   ES:[DI],CX               ; 
+   INC   DI
+   INC   SI
+   LOOP  ENCRYPT                  ; lOOP TIL DONE
+
+
+This document is from Jim Goodwin.
+From the HomeBase Virus Research Board
+408 988 4004

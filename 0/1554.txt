@@ -1,0 +1,442 @@
+From utgpu!jarvis.csri.toronto.edu!mailrus!tut.cis.ohio-state.edu!zaphod.mps.ohio-state.edu!think!mintaka!ogicse!decwrl!polyslo!vlsi3b15!vax1.cc.lehigh.edu!sei.cmu.edu!krvw Thu Mar  1 22:05:11 EST 1990
+X-RN-Article: 970 of comp.virus
+Path: watserv1!utgpu!jarvis.csri.toronto.edu!mailrus!tut.cis.ohio-state.edu!zaphod.mps.ohio-state.edu!think!mintaka!ogicse!decwrl!polyslo!vlsi3b15!vax1.cc.lehigh.edu!sei.cmu.edu!krvw
+>From: CHESS@YKTVMV.BITNET (David.M..Chess)
+Newsgroups: comp.virus
+Subject: Virus posted to VALERT-L (PC)
+Message-ID: <0004.9002161705.AA26642@ge.sei.cmu.edu>
+Date: 15 Feb 90 00:00:00 GMT
+Sender: Virus Discussion List 
+Lines: 42
+Approved: krvw@sei.cmu.edu
+
+Looks like a new one to me!  Very preliminary (possibly wrong)
+description:
+
+  - Infects both EXE and COM files.
+  - Once the virus is in memory (after the first infected file
+    is executed), any vulnerable COM or EXE file that
+    is executed via INT 21h function 4Bh will become infected.
+    (Vulnerable COM files are uninfected files larger than 999
+    bytes and smaller than roughly 62500 bytes; vulnerable
+    EXE files are uninfected and larger than about 1500 bytes).
+  - If the current month is September, October, November, or
+    December, all writes done via INT 21h function 40h will be
+    interfered with (the write-buffer register will have 0Ah
+    added to it before the write).
+
+This is all from disassembly, not from testing!
+
+The virus is quite unreliable; it loads its resident part into address
+9800:0000, without first checking to see if that memory is in use, or
+even exists.  The virus will therefore not work on a machine with less
+than 640K of memory, and it will cause malfunctions on any 640K
+machine that is *using* 9800:0000 for something.  It also does some
+rather cutesy things to try to defeat people trying to execute it from
+within a debugger, and to take over INT 21 without anyone noticing.
+The things add to the unreliability of the virus, but don't make it
+significantly harder to detect or analyze.
+
+Here's one possible scan-id (good term!):
+22032E8B1E9B00B440CD218B
+
+This may be of use to anyone who "accidentally" downloaded and tried
+out the code from VALERT-L!  (Personal opinion: this virus is
+incompetent enough that it will always be rare, if it doesn't
+immediately go extinct.)
+
+DC
+
+[Ed. Many thanks for the analysis, Dave!  John McAfee has a new SCAN,
+version 58 that scans for this virus, dubbed (by John) as the 1559
+virus.  I've sent SCAN version 58 to Jim Wright for posting to the
+VIRUS-L/comp.virus archive sites.  Thanks to everyone who responded so
+quickly to this problem!]
+
+
+From utgpu!jarvis.csri.toronto.edu!cs.utexas.edu!uunet!ogicse!decwrl!polyslo!vlsi3b15!vax1.cc.lehigh.edu!sei.cmu.edu!krvw Thu Mar  1 22:05:45 EST 1990
+X-RN-Article: 1011 of comp.virus
+Path: watserv1!utgpu!jarvis.csri.toronto.edu!cs.utexas.edu!uunet!ogicse!decwrl!polyslo!vlsi3b15!vax1.cc.lehigh.edu!sei.cmu.edu!krvw
+>From: T762102@DM0LRZ01.BITNET
+Newsgroups: comp.virus
+Subject: The 1559 virus (PC)
+Message-ID: <0003.9002201849.AA03640@ge.sei.cmu.edu>
+Date: 16 Feb 90 12:51:00 GMT
+Sender: Virus Discussion List 
+Lines: 102
+Approved: krvw@sei.cmu.edu
+
+Hi!
+
+Recently, the subscribers of VALERT-L received an uuencoded file which
+(as the sender said) was infected with a new virus. Of course, sending
+an infected file to a public (and non-moderated) forum is a big
+mistake, but I won't emphasize this here.
+
+[Ed. Absolutely agreed, and the sender has been told of his error.
+Unfortunately, most of the copies had already been sent out by
+then...]
+
+Personally, I received at least 3 more messages, which warned me that
+I *have* to delete this file and not to uudecode it. However, since
+I'm an antivirus researcher, I couldn't resist to the temptation and
+"test" the virus --- of course in a "safe" environment.
+
+It turned out that the environment was too safe... I worked on a
+computer with physically disabled hard disk.  I booted from a floppy,
+containing only the operating system (PC-DOS 3.30), the infected file,
+MAPMEM (a public-domain utility) and ANTI4US --- an interrupt
+monitoring program --- much like FluShot+ but with much worse
+interface.
+
+I started the interrupt monitor and executed the infected file. Then I
+executed MAPMEM. I wanted to (1) see if the virus can be "seen" in
+memory with this utility and (2) confirm that the infected file is
+"infective" i.e., contains  really  a  virus.  Of  course,  MAPMEM
+didn't saw the beast.
+
+Then I cold-rebooted from a new clear and write-protected diskette and
+inspected the MAPMEM.COM file. Well, it wasn't infected at all! I
+decided that I have received a damaged file and sent a message to the
+author to send me a new file, consisting only of NOPs, infected with
+the virus. He did so.
+
+Further investigations showed that:
+
+        - If I load ANTI4US and then run an infected program, the damn
+          thing does not spread --- it ever does not try to infect
+          files.
+
+        - However, if I first run an infected program and then
+          ANTI4US, the beast tries to spread (which is detected by
+          ANTI4US) --- and of course infects ANTI4US.
+
+At that point I was convinced that it is really a virus. Now I'm
+trying to disassemble it and to write an antidote. Here is what I know
+for the moment (without any warrant!):
+
+        - The virus is memory resident. It installs itself in the
+          memory at address 9800:0000. I couldn't find where (and if)
+          it checks for the memory size.
+
+        - The virus is 1554 bytes long, but may add more bytes (up to
+          1569 I think) to the infected files.
+
+        - Files are infected when they are executed (*not* when
+          copied).
+
+        - Both *.COM and *.EXE files can be infected.
+
+        - COMMAND.COM can be infected --- if it is executed.
+
+        - Files are infected only once.
+
+        - The ReadOnly attribute won't help (you already guessed
+          this :-) ).
+
+        - The virus has its own critical error handler. Therefore an
+          attempt to infect a file on a write-protected diskette won't
+          display the usual "Abort, Retry, Ignore? " message.
+
+        - The size of the infected files is such that always (SIZE mod
+          16 == 2).
+
+        - Only *.COM files greater than 1000 bytes will be infected. I
+          couldn't find if there is a limit for the *.EXE ones.
+
+        - The first 32 bytes of the *.COM files are overwritten. The
+          original 32 bytes can be found at offset [14,15]*16+1015
+          from the beginning of the file. Here [14,15] means the
+          contents of the word at offset 14 (decimal) from the
+          beginning of the file. I'm still trying to find how the
+          virus infects *.EXE files.
+
+DAMAGE:
+
+        - The virus intercepts the WRITE function call (AH == 40h) of
+          INT 21h.  If the month of the current date is 9 or greater,
+          and if the write is on file handle > 4 (i.e., it is a "true"
+          file, not stdin/out/err/aux/prn), then the address of the
+          memory chunk which has to be written, is increased by 0Ah.
+          This leads to garbage being written.
+
+I haven't finished my work with this virus, but it's getting late and
+I have to leave. Therefore, I decided to post what I know. Please, if
+anyone knows more about this virus, send info to the forum too.
+
+[Ed. As already noted, SCAN v 58 has been modified to detect this virus.]
+
+                        Vesselin Bontchev
+                (a Bulgarian antivirus researcher)
+
+
+From utgpu!jarvis.csri.toronto.edu!cs.utexas.edu!usc!elroy.jpl.nasa.gov!jarthur!polyslo!vlsi3b15!vax1.cc.lehigh.edu!sei.cmu.edu!krvw Thu Mar  1 22:05:55 EST 1990
+X-RN-Article: 1057 of comp.virus
+Path: watserv1!utgpu!jarvis.csri.toronto.edu!cs.utexas.edu!usc!elroy.jpl.nasa.gov!jarthur!polyslo!vlsi3b15!vax1.cc.lehigh.edu!sei.cmu.edu!krvw
+>From: LISTVIR@USACHVM1.BITNET (Gonzalo M. Rojas Costa)
+Newsgroups: comp.virus
+Subject: Re: The 1559 Virus (PC)
+Message-ID: <0013.9002231213.AA10580@ge.sei.cmu.edu>
+Date: 23 Feb 90 17:33:30 GMT
+Sender: Virus Discussion List 
+Lines: 69
+Approved: krvw@sei.cmu.edu
+
+Hi
+
+  Vesselin Bontchev (T762102@DM0LRZ01.BITNET) writes:
+
+> - The virus is memory resident. It installs itself in the
+>   memory at address 9800:0000. I couldn't find where (and if)
+>   it checks for the memory size.
+
+     This virus only copies itself to the address 9800h:0000. It don't
+installs resident with INT 27 or the  function 31H. If I execute a big
+program (that ocupies the segment 9800h), this program erase the virus
+from memory and a crash will occurr.
+     Besides, the 1559  virus don't checks the memory size.  Then if I
+execute a  program infected with  this virus  in a computer  with less
+than 640K  of RAM,  the computer  hangs. (This  efect occurr  too, for
+example, in an AT with 1024K of  memory {512K from factory and 512K of
+Extended Memory}).
+
+> - The virus is 1554 bytes long, but may add more bytes (up to
+>   1569 I think) to the infected files.
+
+     Yes. If  I infect a  program with  this virus, the  program don't
+grows in  a constant quantity of  bytes. For that reason  I don't find
+appropriate the  name 1559 for  this virus.  Besides, the size  of the
+virus is 1554 bytes. Then I don't find the reason for that name.
+
+> - Only *.COM files greater than 1000 bytes will be infected. I
+>   couldn't find if there is a limit for the *.EXE ones.
+
+    EXE files greater or equal than 3 512-bytes-pages (1536 bytes) are
+infected.
+
+> - The first 32 bytes of the *.COM files are overwritten. The
+>   original 32 bytes can be found at offset (14,15)*16+1015
+>   from the beginning of the file.
+
+     The 32 bytes  overwritten can be found  at offset (14,15)*16+1271
+on the infected program that I disassembled.
+(It seems that  the offset where the bytes overwritten  are located is
+(14,15)*16+number, and number depends of the size of the program being
+infected).
+
+> - The virus intercepts the WRITE function call (AH == 40H) of
+>   INT 21h. If the month of the current date is 9 or greater,
+>   and if the write is on file handle > 4 (i.e., it is a "true"
+>   file, not stdin/out/err/aux/prn), then the address of the
+>   memory chunk which has to be written, is increased by 0Ah.
+>   This leads to garbage being written.
+
+     Then, if I type the command COPY myfile1 myfile2 in the months of
+September, October, November or December,  myfile2 will lose the first
+ten bytes, and will add an equal quantity of garbage to the end. (But,
+myfile and myfile2 remains of the same size).
+
+     An  important  caracteristic  of  this  virus  is  that  it  have
+subroutines that  don't permit  the use of  debuggers (such  as MSDOS'
+DEBUG or Turbo Debugger).
+
+Disclaimer: The views expressed are my own! I do not speak for, nor do
+            I represent any other person or company.
+
+
+Gonzalo M. Rojas Costa
+BITNET: LISTVIR@USACHVM1
+ARPA: LISTVIR%USACHVM1.BITNET@CUNYVM.CUNY.EDU
+Owner of ASSMPC-L
+Antiviral Research Group
+Technical Support Unit
+Universidad de Santiago de Chile
+
+
+From utgpu!jarvis.csri.toronto.edu!cs.utexas.edu!uwm.edu!rpi!zaphod.mps.ohio-state.edu!unix.cis.pitt.edu!dsinc!netnews.upenn.edu!vax1.cc.lehigh.edu!sei.cmu.edu!krvw Thu Mar  1 22:06:04 EST 1990
+X-RN-Article: 1068 of comp.virus
+Path: watserv1!utgpu!jarvis.csri.toronto.edu!cs.utexas.edu!uwm.edu!rpi!zaphod.mps.ohio-state.edu!unix.cis.pitt.edu!dsinc!netnews.upenn.edu!vax1.cc.lehigh.edu!sei.cmu.edu!krvw
+>From: T762102@DM0LRZ01.BITNET
+Newsgroups: comp.virus
+Subject: The 1554 (NOT 1559!) virus (PC)
+Message-ID: <0007.9002261315.AA04379@ge.sei.cmu.edu>
+Date: 23 Feb 90 13:53:00 GMT
+Sender: Virus Discussion List 
+Lines: 73
+Approved: krvw@sei.cmu.edu
+
+Gonzalo M. Rojas Costa  writes:
+
+>     This virus only copies itself to the address 9800h:0000. It don't
+>installs resident with INT 27 or the  function 31H. If I execute a big
+>program (that ocupies the segment 9800h), this program erase the virus
+>from memory and a crash will occurr.
+
+Sorry, this is a misunderstanding, due to my poor English. What I did
+mean was not that the virus is a TSR program, but that once you run an
+infected application, it will stay in memory permanently (until the
+next reboot, of course :-) ). I call such a virus memory resident,
+since it's resident in the memory all the time. What I do *not* call a
+memory resident virus is a virus which gets its code executed only
+when one executes an infected application.
+
+>For that reason I don't find appropriate the name 1559 for this
+>virus.  Besides, the size of the virus is 1554 bytes.  Then I don't
+>find the reason for that name.
+
+Agreed. So let's call it the 1554 virus. (John McAfee?)
+
+>The 32 bytes overwritten can be found at offset (14,15)*16+1271 on
+>the infected program that I disassembled.  (It seems that the offset
+>where the bytes overwritten are located is (14,15)*16+number, and
+>number depends of the size of the program being infected).
+
+Nope. The number is hard coded in the virus body. Here is the relevant
+portion of the code:
+
+                org     xxx
+
+                push    ds
+                push    cs
+                pop     ds
+                lea     si,[4F7h]
+                mov     di,100h
+                mov     cx,20h
+                rep     movsb
+
+This code restores the original bytes into their place. It is executed
+just after the virus has performed a jump at cs+[0Eh]:0. Therefore the
+full address of xxx is (cs+[0Eh])*10h. The instruction
+
+        lea     si,[4F7h]
+
+actually loads SI with the number 4F7h (1271 decimal).
+
+        rep     movsb
+
+moves 20h (32 decimal) bytes from DS:SI to ES:DI. And we have DS ==
+CS (push cs; pop ds). Therefore, the bytes are got from (full address)
+(CS+[0Eh])*10h+4F7h. To eliminate the value of the CS register, just
+remember that the file was loaded at address CS:100h (i.e., the full
+address is CS*10h+100h). I speak here only for the .COM files.
+
+Now, if we subtract the two values, we'll get
+
+(CS+[0Eh])*10h+4F7h-CS*10h+100h = [0Eh]*10h+3F7h
+
+from the beginning of the file. And 3F7h is just 1015 decimal --- the
+number I stated in my previous posting.
+
+I repeat, this is true only for the .COM files.
+
+BTW, has someone of the other antivirus researchers produced a program
+which is able to disinfect the files from this virus? And even to
+restore their original size? I spoke with David Chess and he told me
+that he prefers the "delete the infected file and restore them from
+backups" method. But have in mind, that guy from Taiwan (was he from
+there?) is in trouble --- and may not have the appropriate backups.
+(We all miss them just when we need them :-).)
+
+Vesselin
+
+
+From utgpu!jarvis.csri.toronto.edu!cs.utexas.edu!yale!think!zaphod.mps.ohio-state.edu!unix.cis.pitt.edu!dsinc!netnews.upenn.edu!vax1.cc.lehigh.edu!sei.cmu.edu!krvw Thu Mar  1 22:06:14 EST 1990
+X-RN-Article: 1072 of comp.virus
+Path: watserv1!utgpu!jarvis.csri.toronto.edu!cs.utexas.edu!yale!think!zaphod.mps.ohio-state.edu!unix.cis.pitt.edu!dsinc!netnews.upenn.edu!vax1.cc.lehigh.edu!sei.cmu.edu!krvw
+>From: T762102@DM0LRZ01.BITNET
+Newsgroups: comp.virus
+Subject: How the 1554 virus recognizes infected files (PC)
+Message-ID: <0011.9002261315.AA04379@ge.sei.cmu.edu>
+Date: 25 Feb 90 12:37:00 GMT
+Sender: Virus Discussion List 
+Lines: 27
+Approved: krvw@sei.cmu.edu
+
+Hi!
+
+Since this was not mentioned yet (I hope, I receive the digests with
+some delay), I would like to point out how the 1554 virus recognizes
+which files are infected by him.
+
+For .COM files:
+
+        If the contents of the word at offset 02 in the file is 12Eh,
+then the file is infected.  This means that the contents of the bytes
+at offset 02 and 03 are 2Eh and 01h respectively.  Offsets are counted
+from 0, i.e.  the first byte of the file is at offset 0.
+
+For .EXE files:
+
+        If the contents of the word at offset 02 in the file is equal
+to the negated contents of the word at offset 12h, then the file is
+infected.
+
+Unfortunately, this does not give us a method for file vaccination,
+since the contents of the bytes mentioned above is used. For .COM
+files, the byte at offset 02 is usually (not always!) the third byte of
+a JMP instruction. For .EXE files the situation is easier --- the word
+at offset 12h contains the so-called checksum, which is never used and
+can be modified.
+
+                                        Vesselin Bontchev
+
+
+From utgpu!jarvis.csri.toronto.edu!cs.utexas.edu!swrinde!zaphod.mps.ohio-state.edu!unix.cis.pitt.edu!dsinc!netnews.upenn.edu!vax1.cc.lehigh.edu!sei.cmu.edu!krvw Thu Mar  1 22:06:37 EST 1990
+X-RN-Article: 1089 of comp.virus
+Path: watserv1!utgpu!jarvis.csri.toronto.edu!cs.utexas.edu!swrinde!zaphod.mps.ohio-state.edu!unix.cis.pitt.edu!dsinc!netnews.upenn.edu!vax1.cc.lehigh.edu!sei.cmu.edu!krvw
+>From: LISTVIR@USACHVM1.BITNET (Gonzalo M. Rojas Costa)
+Newsgroups: comp.virus
+Subject: Re: How the 1554 virus recognizes infected files (PC)
+Message-ID: <0008.9003011504.AA12678@ge.sei.cmu.edu>
+Date: 1 Mar 90 19:16:47 GMT
+Sender: Virus Discussion List 
+Lines: 46
+Approved: krvw@sei.cmu.edu
+
+Hi...
+
+     Vesselin Bontchev (T762102@DM0LRZ01.BITNET) writes:
+
+>> For .COM files:
+>>        If the contents of the word at offset 02 in the file is 12Eh,
+>> then the file is infected.
+
+   No. The file isn't infected if the contents of the word at offset 02
+   in the file is 12Eh. (i.e. If I have an infected program, this always
+   have the word 12Eh at offset 02, because this word is part of an
+   instruction of the virus).
+
+>> For .EXE files:
+>>         If the contents of the word at offset 02 in the file is equal
+>> to the negated contents of the word at offset 12h, then the file is
+>> infected.
+
+   No. If the contents of the word at offset 02 (Number of bytes
+   contained in last page) is equal to the negated contents of the
+   word at offset 12h (negative sum of all the words in the file),
+   then the program ISN'T INFECTED.
+   (In the process of infection, the virus negates the number of bytes
+    contained in the last page of the EXE program, and this value it
+    puts at offset 12h of the header (i.e. as the negative sum of all
+    the words in the file).
+
+>> Unfortunately, this does not give us a method for file vaccination,
+>> since the contents of the bytes mentioned above is used. For .COM
+>> files, the byte at offset 02 is usually (not always!) the third
+>> byte of a JMP instruction. For .EXE files the situation is
+>> easier --- the word at offset 12h contains the so-called checksum,
+>> which is never used and can be modified.
+
+   I completely agree with you.
+
+Disclaimer: The views expressed are my own! I do not speak for, nor do
+            I represent any other person or company.
+
+Gonzalo M. Rojas Costa
+BITNET: LISTVIR@USACHVM1
+ARPA: LISTVIR%USACHVM1.BITNET@CUNYVM.CUNY.EDU
+Owner of ASSMPC-L ("Assembly for the IBM-PC")
+Antiviral Research Group
+Technical Support Unit
+Universidad de Santiago de Chile
+

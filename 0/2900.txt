@@ -1,0 +1,77 @@
+PLASTIQUE-2900 VIRUS
+
+
+The Plastique Virus is Parasitic on COM & EXE files but excludes
+COMMAND.COM.  The infection method is slightly unusual in that
+COM files have the virus code prepended to the file, while EXE
+files have it appended.  In either case, the infective length is
+2900 bytes and no stealth capabilities exist to mask this
+increase in file length.  After infection, file attributes and
+date/time settings are partially encrypted but allows the
+extraction of a recognition string.
+
+This virus becomes resident in high memory by using the DOS
+Terminate and Stay Resident function 31H.  During installation a
+timing routine determines the processing speed and this is used
+for sound effects later.
+
+As it becomes resident, INT 21H is intercepted by a special
+handler which will cause file infection on function requests
+4B00H & 3D00H, these correspond to Load & Execute, and Open File
+for Read Only.  The DOS Critical Error handler (INT 24H) is
+bypassed during the infective cycle to avoid error messages.
+
+On a random basis, virus installation after 20th Sept. 1990 may
+cause other handlers to be installed which will produce certain
+sound effects and may result in execution of the trigger
+routine.
+These handlers are as follows:-
+One of two INT 08 - Timer Interrupt handlers are installed
+(chances are even of either one being installed).
+
+Handler 1 increments the timer counter and slows processing
+progressively up to a limit decided during installation timing.
+
+Handler 2 also increments the timer counter and makes "explosion"
+noise about every 4.5 minutes.
+
+An INT 09 - Keyboard Interrupt handler is installed which will
+intercept a Ctrl-Alt-Del key sequence and then act according to
+which INT 08 handler is installed.  If Handler 1 is present then
+the trigger routine is activated.  If Handler 2 is present then
+Non-volatile RAM is overwritten with OFFH bytes.  The INT 09
+handler also counts keypresses, and after 4000 keypresses, an
+error will be forced on the next disk write request to INT 13H.
+
+An INT 13H - Disk Access handler is installed which intercepts
+write requests and forces an error according to the condition of
+a flag.  The error consists of putting -1 into DX (Head & Drive)
+and completing the call.  The routine then returns without
+setting the relevant flags so that the caller is not aware that
+his data has NOT been written.
+
+The Trigger routine occurs immediately on execution of ACAD.EXE,
+otherwise during a Ctrl-Alt-Del sequence from within INT 09
+handler if INT 08 Handler 1 is installed and the timer counter
+has reached a predetermined limit.  The actual routine checks if
+there is a floppy disk in drive A:, if so it overwrites head 0 of
+all tracks with the contents of memory from address 0000:0000.
+Processing continues similarly for floppy in drive B:, zapping it
+if possible.  Then the "explosion" routine is set to occur as
+both the first and second fixed disk drives are overwritten on
+all heads and tracks.  Finally a loop overwrites the contents of
+CMOS by direct port access.
+
+The virus recognises itself in memory by issuing an INT 21H with
+4B40H in the AX register.  If the virus is resident, the call
+returns with 5678H in AX.  Recognition on disk is by examining
+the word at offset 12H in the target file.  If this word is 1989H
+then the file is assumed to be infected.
+
+The recognition string for the Plastique virus is as follows :-
+
+        B840 4BCD 213D 7856 7512 B841 4BBF 0001
+
+and this will be found at offset 82CH into the virus code.
+
+(attributed to Jim Bates Jan.1991)
