@@ -1,0 +1,1403 @@
+; JACKAL Tasm 3.0 Assembly Source Code (Used D86 Sourcer)
+                                                         
+       
+0100 C7 06 00 01 CD 20       MOV W[0100],020CD
+0106 EB 69                   JMP 0171
+0108 00 00                   ADD B[BX+SI],AL
+010A 00 00                   ADD B[BX+SI],AL
+010C 00 00                   ADD B[BX+SI],AL
+010E 00 00                   ADD B[BX+SI],AL
+0110 00 00                   ADD B[BX+SI],AL
+0112 00 00                   ADD B[BX+SI],AL
+0114 00 00                   ADD B[BX+SI],AL
+0116 00 00                   ADD B[BX+SI],AL
+0118 00 00                   ADD B[BX+SI],AL
+011A 00 00                   ADD B[BX+SI],AL
+011C 0E                      PUSH CS
+011D 1F                      POP DS
+011E 83 2E 13 04 05          SUB W[0413],5
+0123 CD 12                   NT 012            ; Memory size
+0125 B1 0A                   MOV CL,0A
+0127 D3 C8                   ROR AX,CL
+0129 8E C0                   MOV ES,AX
+012B B9 FF 00                MOV CX,0FF
+012E BE 00 7C                MOV SI,07C00
+0131 56                      PUSH SI
+0132 1E                      PUSH DS
+0133 33 FF                   XOR DI,DI
+0135 FC                      CLD
+0136 F3 A5                   REP MOVSW
+0138 B8 00 00                MOV AX,0
+013B AB                      STOSW
+013C B8 42 00                MOV AX,042
+013F 06                      PUSH ES
+0140 50                      PUSH AX
+0141 CB                      RETF
+0142 0E                      PUSH CS
+0143 1F                      POP DS
+0144 B8 06 02                MOV AX,0206
+0147 8B DF                   MOV BX,DI
+0149 B9 00 00                MOV CX,0
+014C BA 80 00                MOV DX,080
+014F CD 13                   INT 013               ; Disk Services 
+0151 72 0B                   JB 015E
+0153 E8 E3 0A                CALL 0C39
+0156 E8 03 0B                CALL 0C5C
+0159 CD 12                   INT 012               ; Memory Size
+015B A3 89 02                MOV W[0289],AX
+015E B8 01 02                MOV AX,0201
+0161 07                      POP ES
+0162 5B                      POP BX
+0163 B9 00 00                MOV CX,0
+0166 B6 00                   MOV DH,0
+0168 CD 13                   INT 013               ; Disk Services
+016A 72 03                   JB 016F
+016C 06                      PUSH ES
+016D 53                      PUSH BX
+016E CB                      RETF
+016F CD 18                   INT 018
+0171 8C C8                   MOV AX,CS
+0173 05 10 00                ADD AX,010
+0176 50                      PUSH AX
+0177 B8 7C 00                MOV AX,07C
+017A 50                      PUSH AX
+017B CB                      RETF
+017C 1E                      PUSH DS
+017D 0E                      PUSH CS
+017E 1F                      POP DS
+017F C6 06 A4 06 00          MOV B[06A4],0
+0184 C6 06 AB 02 2F          MOV B[02AB],02F
+0189 FC                      CLD
+018A E8 81 0A                CALL 0C0E
+018D 0E                      PUSH CS
+018E 07                      POP ES
+018F E8 A7 0A                CALL 0C39
+0192 B4 52                   MOV AH,052
+0194 CD 21                   INT 021               ; Dos Function Request
+0196 26 8B 47 FE             ES MOV AX,W[BX-2]
+019A A3 43 0A                MOV W[0A43],AX
+019D B0 01                   MOV AL,1
+019F BA 01 0A                MOV DX,0A01
+01A2 E8 E5 0A                CALL 0C8A
+01A5 9C                      PUSHF
+01A6 5D                      POP BP
+01A7 81 CD 00 01             OR BP,0100
+01AB C6 06 28 0A 03          MOV B[0A28],3
+01B0 B4 01                   MOV AH,1
+01B2 55                      PUSH BP
+01B3 9D                      POPF
+01B4 9C                      PUSHF
+01B5 FF 1E 57 12             CALL D[01257]
+01B9 C6 06 28 0A 3D          MOV B[0A28],03D
+01BE B4 C0                   MOV AH,0C0
+01C0 55                      PUSH BP
+01C1 9D                      POPF
+01C2 9C                      PUSHF
+01C3 FF 1E AB 0E             CALL D[0EAB]
+01C7 C6 06 28 0A 18          MOV B[0A28],018
+01CC B8 01 30                MOV AX,03001
+01CF 55                      PUSH BP
+01D0 9D                      POPF
+01D1 E8 43 0B                CALL 0D17
+01D4 C6 06 28 0A 42          MOV B[0A28],042
+01D9 B4 01                   MOV AH,1
+01DB 55                      PUSH BP
+01DC 9D                      POPF
+01DD 9C                      PUSHF
+01DE FF 1E 57 0F             CALL D[0F57]
+01E2 81 E5 FF FE             AND BP,0FEFF
+01E6 55                      PUSH BP
+01E7 9D                      POPF
+01E8 B0 01                   MOV AL,1
+01EA C5 16 5B 0E             LDS DX,[0E5B]
+01EE E8 99 0A                CALL 0C8A
+01F1 B8 00 30                MOV AX,03000
+01F4 BB 4A 61                MOV BX,0614A
+01F7 B9 63 6B                MOV CX,06B63
+01FA BA 61 6C                MOV DX,06C61
+01FD CD 21                   INT 021               ; Dos Function Request
+01FF 81 FB 48 66             CMP BX,06648
+0203 74 55                   JE 025A
+0205 58                      POP AX
+0206 50                      PUSH AX
+0207 8B D8                   MOV BX,AX
+0209 48                      DEC AX
+020A 8E D8                   MOV DS,AX
+020C 33 FF                   XOR DI,DI
+020E 80 3D 5A                CMP B[DI],05A
+0211 75 47                   JNE 025A
+0213 8B 45 03                MOV AX,W[DI+3]
+0216 2D 26 01                SUB AX,0126
+0219 72 3F                   JB 025A
+021B 3D 00 10                CMP AX,01000
+021E 72 3A                   JB 025A
+0220 89 45 03                MOV W[DI+3],AX
+0223 03 C3                   ADD AX,BX
+0225 89 45 12                MOV W[DI+012],AX
+0228 B9 2E 09                MOV CX,092E
+022B 33 F6                   XOR SI,SI
+022D 0E                      PUSH CS
+022E 1F                      POP DS
+022F 8E C0                   MOV ES,AX
+0231 FC                      CLD
+0232 F3 A5                   REP MOVSW
+0234 50                      PUSH AX
+0235 E8 43 FF                CALL 017B
+0238 0E                      PUSH CS
+0239 1F                      POP DS
+023A E8 6E 00                CALL 02AB
+023D BF 31 0C                MOV DI,0C31
+0240 B0 EA                   MOV AL,0EA
+0242 AA                      STOSB
+0243 88 45 04                MOV B[DI+4],AL
+0246 B8 AA 02                MOV AX,02AA
+0249 AB                      STOSW
+024A C7 45 03 40 03          MOV W[DI+3],0340
+024F 8C 0D                   MOV W[DI],CS
+0251 8C 4D 05                MOV W[DI+5],CS
+0254 E8 73 0A                CALL 0CCA
+0257 E8 7D 0A                CALL 0CD7
+025A E9 00 00                JMP 025D
+025D 07                      POP ES
+025E 0E                      PUSH CS
+025F 1F                      POP DS
+0260 33 F6                   XOR SI,SI
+0262 8B 04                   MOV AX,W[SI]
+0264 3D 4D 5A                CMP AX,05A4D
+0267 74 14                   JE 027D
+0269 3D 5A 4D                CMP AX,04D5A
+026C 74 0F                   JE 027D
+026E BF 00 01                MOV DI,0100
+0271 06                      PUSH ES
+0272 57                      PUSH DI
+0273 B9 0E 00                MOV CX,0E
+0276 FC                      CLD
+0277 F3 A5                   REP MOVSW
+0279 06                      PUSH ES
+027A 1F                      POP DS
+027B 91                      XCHG AX,CX
+027C CB                      RETF
+027D 8C C0                   MOV AX,ES
+027F 05 10 00                ADD AX,010
+0282 01 44 16                ADD W[SI+016],AX
+0285 03 44 0E                ADD AX,W[SI+0E]
+0288 06                      PUSH ES
+0289 1F                      POP DS
+028A FA                      CLI
+028B 8E D0                   MOV SS,AX
+028D 2E 8B 64 10             CS MOV SP,W[SI+010]
+0291 33 C0                   XOR AX,AX
+0293 FB                      STI
+0294 2E FF 6C 14             CS JMP D[SI+014]
+0298 03 09                   ADD CX,W[BX+DI]
+029A 16                      PUSH SS
+029B 00 1D                   ADD B[DI],BL
+029D 13 0B                   ADC CX,W[BP+DI]
+029F 02 72 03                ADD DH,B[BP+SI+3]
+02A2 14 00                   ADC AL,0
+02A4 1A 13                   SBB DL,B[BP+DI]
+02A6 0A 0E 12 18             OR CL,B[01812]
+02AA 00 BD EB 1A             ADD B[DI+01AEB],BH
+02AE BE 55 AA                MOV SI,0AA55
+02B1 B8 01 02                MOV AX,0201
+02B4 BB 57 0C                MOV BX,0C57
+02B7 41                      INC CX
+02B8 BA 80 00                MOV DX,080
+02BB 50                      PUSH AX
+02BC E8 4E 0A                CALL 0D0D
+02BF 58                      POP AX
+02C0 72 73                   JB RET
+02C2 39 B7 FE 01             CMP W[BX+01FE],SI
+02C6 75 6D                   JNE RET
+02C8 50                      PUSH AX
+02C9 51                      PUSH CX
+02CA 52                      PUSH DX
+02CB 8B 8F C0 01             MOV CX,W[BX+01C0]
+02CF 8A B7 BF 01             MOV DH,B[BX+01BF]
+02D3 89 0E 64 00             MOV W[064],CX
+02D7 88 36 67 00             MOV B[067],DH
+02DB E8 2F 0A                CALL 0D0D
+02DE 5A                      POP DX
+02DF 59                      POP CX
+02E0 58                      POP AX
+02E1 72 52                   JB RET
+02E3 39 2F                   CMP W[BX],BP
+02E5 74 4E                   JE RET
+02E7 39 B7 FE 01             CMP W[BX+01FE],SI
+02EB 75 48                   JNE RET
+02ED E8 1D 0A                CALL 0D0D
+02F0 72 43                   JB RET
+02F2 53                      PUSH BX
+02F3 51                      PUSH CX
+02F4 52                      PUSH DX
+02F5 8B 87 C4 01             MOV AX,W[BX+01C4]
+02F9 25 3F 00                AND AX,03F
+02FC 2C 07                   SUB AL,7
+02FE 76 35                   JBE RET
+0300 3C 01                   CMP AL,1
+0302 74 31                   JE RET
+0304 8B C8                   MOV CX,AX
+0306 40                      INC AX
+0307 A2 4A 00                MOV B[04A],AL
+030A B8 07 03                MOV AX,0307
+030D 33 DB                   XOR BX,BX
+030F 87 2F                   XCHG W[BX],BP
+0311 87 36 FE 01             XCHG W[01FE],SI
+0315 89 36 39 00             MOV W[039],SI
+0319 E8 F1 09                CALL 0D0D
+031C 89 2F                   MOV W[BX],BP
+031E 89 36 FE 01             MOV W[01FE],SI
+0322 89 0E 17 0E             MOV W[0E17],CX
+0326 88 36 16 0E             MOV B[0E16],DH
+032A 5A                      POP DX
+032B 59                      POP CX
+032C 5B                      POP BX
+032D 72 06                   JB RET
+032F B8 01 03                MOV AX,0301
+0332 E8 D8 09                CALL 0D0D
+0335 C3                      RET
+0336 50                      PUSH AX
+0337 06                      PUSH ES
+0338 E4 60                   IN AL,060
+033A 3C 53                   CMP AL,053
+033C 75 0E                   JNE 034C
+033E 33 C0                   XOR AX,AX
+0340 8E C0                   MOV ES,AX
+0342 26 A0 17 04             ES MOV AL,B[0417]
+0346 24 0C                   AND AL,0C
+0348 3C 0C                   CMP AL,0C
+034A 74 07                   JE 0353
+034C 07                      POP ES
+034D 58                      POP AX
+034E 2E FF 2E 7B 0E          CS JMP D[0E7B]
+0353 FA                      CLI
+0354 E4 61                   IN AL,061
+0356 50                      PUSH AX
+0357 0C 80                   OR AL,080
+0359 E6 61                   OUT 061,AL
+035B 58                      POP AX
+035C E6 61                   OUT 061,AL
+035E B0 20                   MOV AL,020
+0360 E6 20                   OUT 020,AL
+0362 E6 A0                   OUT 0A0,AL
+0364 E4 21                   IN AL,021
+0366 24 FE                   AND AL,0FE
+0368 E6 21                   OUT 021,AL
+036A B9 FE 01                MOV CX,01FE
+036D BE 57 0E                MOV SI,0E57
+0370 33 FF                   XOR DI,DI
+0372 0E                      PUSH CS
+0373 1F                      POP DS
+0374 89 3E DB 0E             MOV W[0EDB],DI
+0378 89 3E DD 0E             MOV W[0EDD],DI
+037C FC                      CLD
+037D F3 A5                   REP MOVSW
+037F 91                      XCHG AX,CX
+0380 26 A3 17 04             ES MOV W[0417],AX
+0384 26 C7 06 13 04 34 12    ES MOV W[0413],01234
+038B B0 03                   MOV AL,3
+038D CD 10                   INT 010                  ; Video Services
+038F FE C4                   INC AH
+0391 B9 07 06                MOV CX,0607
+0394 CD 10                   INT 010                  ; Video Services
+0396 E8 C3 08                CALL 0C5C
+0399 26 A1 6C 04             ES MOV AX,W[046C]
+039D 05 06 00                ADD AX,6
+03A0 FB                      STI
+03A1 26 3B 06 6C 04          ES CMP AX,W[046C]
+03A6 75 F9                   JNE 03A1
+03A8 CD 19                   INT 019                 ; Load & Execute Bootstrap
+03AA EB FE                   JMP 03AA
+03AC E8 F3 08                CALL 0CA2
+03AF B0 21                   MOV AL,021
+03B1 E8 C5 08                CALL 0C79
+03B4 8C C0                   MOV AX,ES
+03B6 3D 00 08                CMP AX,0800
+03B9 77 1D                   JA 03D8
+03BB 0E                      PUSH CS
+03BC 0E                      PUSH CS
+03BD 1F                      POP DS
+03BE 07                      POP ES
+03BF BF DD 0E                MOV DI,0EDD
+03C2 FD                      STD
+03C3 87 05                   XCHG W[DI],AX
+03C5 2E AF                   CS SCASW
+03C7 74 0F                   JE 03D8
+03C9 89 1D                   MOV W[DI],BX
+03CB B0 21                   MOV AL,021
+03CD BA 40 03                MOV DX,0340
+03D0 E8 B7 08                CALL 0C8A
+03D3 C6 06 AB 02 2F          MOV B[02AB],02F
+03D8 E8 DB 08                CALL 0CB6
+03DB 80 FC 02                CMP AH,2
+03DE 75 09                   JNE 03E9
+03E0 83 F9 01                CMP CX,1
+03E3 75 04                   JNE 03E9
+03E5 0A F6                   OR DH,DH
+03E7 74 06                   JE 03EF
+03E9 E8 11 09                CALL 0CFD
+03EC CA 02 00                RETF 2
+03EF E8 0B 09                CALL 0CFD
+03F2 E8 AD 08                CALL 0CA2
+03F5 72 43                   JB 043A
+03F7 0E                      PUSH CS
+03F8 06                      PUSH ES
+03F9 1F                      POP DS
+03FA 07                      POP ES
+03FB 8B FB                   MOV DI,BX
+03FD 81 BD FE 01 55 AA       CMP W[DI+01FE],0AA55
+0403 75 35                   JNE 043A
+0405 B8 01 02                MOV AX,0201
+0408 BB 57 0C                MOV BX,0C57
+040B 8B 8D C0 01             MOV CX,W[DI+01C0]
+040F 83 F9 3F                CMP CX,03F
+0412 77 26                   JA 043A
+0414 8A B5 BF 01             MOV DH,B[DI+01BF]
+0418 0A F6                   OR DH,DH
+041A 75 1E                   JNE 043A
+041C E8 EE 08                CALL 0D0D
+041F 72 19                   JB 043A
+0421 26 81 3F EB 1A          ES CMP W[BX],01AEB
+0426 75 12                   JNE 043A
+0428 2E 8B 87 64 00          CS MOV AX,W[BX+064]
+042D 89 85 C0 01             MOV W[DI+01C0],AX
+0431 2E 8A 87 67 00          CS MOV AL,B[BX+067]
+0436 88 85 BF 01             MOV B[DI+01BF],AL
+043A E8 79 08                CALL 0CB6
+043D CA 02 00                RETF 2
+0440 E8 5F 08                CALL 0CA2
+0443 0E                      PUSH CS
+0444 1F                      POP DS
+0445 89 1E 15 0C             MOV W[0C15],BX
+0449 E4 21                   IN AL,021
+044B 0C 02                   OR AL,2
+044D E6 21                   OUT 021,AL
+044F B0 24                   MOV AL,024
+0451 E8 25 08                CALL 0C79
+0454 89 1E E7 0E             MOV W[0EE7],BX
+0458 8C 06 E9 0E             MOV W[0EE9],ES
+045C BA 0A 0C                MOV DX,0C0A
+045F E8 28 08                CALL 0C8A
+0462 E8 51 08                CALL 0CB6
+0465 E8 6F 08                CALL 0CD7
+0468 E8 37 08                CALL 0CA2
+046B FC                      CLD
+046C 8B EC                   MOV BP,SP
+046E 3D 00 30                CMP AX,03000
+0471 75 12                   JNE 0485
+0473 33 D9                   XOR BX,CX
+0475 33 DA                   XOR BX,DX
+0477 81 FB 48 66             CMP BX,06648
+047B 74 03                   JE 0480
+047D E9 11 03                JMP 0791
+0480 89 5E 0E                MOV W[BP+0E],BX
+0483 EB 45                   JMP 04CA
+0485 80 FC 11                CMP AH,011
+0488 74 05                   JE 048F
+048A 80 FC 12                CMP AH,012
+048D 75 54                   JNE 04E3
+048F E8 85 08                CALL 0D17
+0492 0A C0                   OR AL,AL
+0494 74 03                   JE 0499
+0496 E9 F8 02                JMP 0791
+0499 89 46 10                MOV W[BP+010],AX
+049C 8B F2                   MOV SI,DX
+049E B4 2F                   MOV AH,02F
+04A0 E8 74 08                CALL 0D17
+04A3 AC                      LODSB
+04A4 FE C0                   INC AL
+04A6 75 03                   JNE 04AB
+04A8 83 C3 07                ADD BX,7
+04AB 8D 7F 1A                LEA DI,[BX+01A]
+04AE 06                      PUSH ES
+04AF 1F                      POP DS
+04B0 8A 05                   MOV AL,B[DI]
+04B2 2C C8                   SUB AL,0C8
+04B4 72 14                   JB 04CA
+04B6 AA                      STOSB
+04B7 C4 47 1D                LES AX,[BX+01D]
+04BA 2D 2E 0C                SUB AX,0C2E
+04BD 8C C1                   MOV CX,ES
+04BF 83 D9 00                SBB CX,0
+04C2 72 06                   JB 04CA
+04C4 89 47 1D                MOV W[BX+01D],AX
+04C7 89 4F 1F                MOV W[BX+01F],CX
+04CA E4 21                   IN AL,021
+04CC 24 FD                   AND AL,0FD
+04CE E6 21                   OUT 021,AL
+04D0 B0 24                   MOV AL,024
+04D2 2E C5 16 E7 0E          CS LDS DX,[0EE7]
+04D7 E8 B0 07                CALL 0C8A
+04DA E8 D9 07                CALL 0CB6
+04DD E8 F7 07                CALL 0CD7
+04E0 CA 02 00                RETF 2
+04E3 80 FC 4E                CMP AH,04E
+04E6 74 05                   JE 04ED
+04E8 80 FC 4F                CMP AH,04F
+04EB 75 1C                   JNE 0509
+04ED E8 27 08                CALL 0D17
+04F0 73 03                   JAE 04F5
+04F2 E9 9C 02                JMP 0791
+04F5 89 46 10                MOV W[BP+010],AX
+04F8 9C                      PUSHF
+04F9 8F 46 12                POP W[BP+012]
+04FC B4 2F                   MOV AH,02F
+04FE E8 16 08                CALL 0D17
+0501 8D 7F 19                LEA DI,[BX+019]
+0504 83 EB 03                SUB BX,3
+0507 EB A5                   JMP 04AE
+0509 80 FC 3F                CMP AH,03F
+050C 74 03                   JE 0511
+050E E9 AE 00                JMP 05BF
+0511 E8 C7 04                CALL 09DB
+0514 72 F8                   JB 050E
+0516 80 7D 10 C8             CMP B[DI+010],0C8
+051A 72 F2                   JB 050E
+051C C4 45 11                LES AX,[DI+011]
+051F 2D 2E 0C                SUB AX,0C2E
+0522 8C C3                   MOV BX,ES
+0524 83 DB 00                SBB BX,0
+0527 C4 55 15                LES DX,[DI+015]
+052A 8C C6                   MOV SI,ES
+052C 50                      PUSH AX
+052D 53                      PUSH BX
+052E 2B C2                   SUB AX,DX
+0530 1B DE                   SBB BX,SI
+0532 5B                      POP BX
+0533 58                      POP AX
+0534 73 05                   JAE 053B
+0536 33 C9                   XOR CX,CX
+0538 56                      PUSH SI
+0539 EB 16                   JMP 0551
+053B 56                      PUSH SI
+053C 52                      PUSH DX
+053D 03 D1                   ADD DX,CX
+053F 83 D6 00                ADC SI,0
+0542 3B F3                   CMP SI,BX
+0544 72 0C                   JB 0552
+0546 77 04                   JA 054C
+0548 3B D0                   CMP DX,AX
+054A 72 06                   JB 0552
+054C 5A                      POP DX
+054D 8B C8                   MOV CX,AX
+054F 2B CA                   SUB CX,DX
+0551 52                      PUSH DX
+0552 50                      PUSH AX
+0553 53                      PUSH BX
+0554 1E                      PUSH DS
+0555 B4 3F                   MOV AH,03F
+0557 8B 56 0A                MOV DX,W[BP+0A]
+055A 8E 5E 02                MOV DS,W[BP+2]
+055D E8 B4 07                CALL 0D14
+0560 1F                      POP DS
+0561 5B                      POP BX
+0562 59                      POP CX
+0563 5A                      POP DX
+0564 5E                      POP SI
+0565 73 03                   JAE 056A
+0567 E9 27 02                JMP 0791
+056A 89 46 10                MOV W[BP+010],AX
+056D 9C                      PUSHF
+056E 8F 46 12                POP W[BP+012]
+0571 0B F6                   OR SI,SI
+0573 75 47                   JNE 05BC
+0575 83 FA 1C                CMP DX,01C
+0578 73 42                   JAE 05BC
+057A 0B C0                   OR AX,AX
+057C 74 3E                   JE 05BC
+057E 50                      PUSH AX
+057F 03 C2                   ADD AX,DX
+0581 F5                      CMC
+0582 73 03                   JAE 0587
+0584 3D 1C 00                CMP AX,01C
+0587 58                      POP AX
+0588 72 05                   JB 058F
+058A B8 1C 00                MOV AX,01C
+058D 2B C2                   SUB AX,DX
+058F 91                      XCHG AX,CX
+0590 A8 0F                   TEST AL,0F
+0592 74 08                   JE 059C
+0594 24 F0                   AND AL,0F0
+0596 05 10 00                ADD AX,010
+0599 83 D3 00                ADC BX,0
+059C 03 C2                   ADD AX,DX
+059E 83 D3 00                ADC BX,0
+05A1 87 45 15                XCHG W[DI+015],AX
+05A4 87 5D 17                XCHG W[DI+017],BX
+05A7 50                      PUSH AX
+05A8 53                      PUSH BX
+05A9 1E                      PUSH DS
+05AA B4 3F                   MOV AH,03F
+05AC 8B 56 0A                MOV DX,W[BP+0A]
+05AF 8E 5E 02                MOV DS,W[BP+2]
+05B2 E8 5F 07                CALL 0D14
+05B5 1F                      POP DS
+05B6 8F 45 17                POP W[DI+017]
+05B9 8F 45 15                POP W[DI+015]
+05BC E9 0B FF                JMP 04CA
+05BF 80 FC 40                CMP AH,040
+05C2 74 03                   JE 05C7
+05C4 E9 A5 00                JMP 066C
+05C7 E8 11 04                CALL 09DB
+05CA 72 F8                   JB 05C4
+05CC 80 7D 10 C8             CMP B[DI+010],0C8
+05D0 72 F2                   JB 05C4
+05D2 C4 45 11                LES AX,[DI+011]
+05D5 2D 2E 0C                SUB AX,0C2E
+05D8 8C C3                   MOV BX,ES
+05DA 83 DB 00                SBB BX,0
+05DD C4 55 15                LES DX,[DI+015]
+05E0 8C C6                   MOV SI,ES
+05E2 0B F6                   OR SI,SI
+05E4 75 05                   JNE 05EB
+05E6 83 FA 1C                CMP DX,01C
+05E9 72 0F                   JB 05FA
+05EB 03 D1                   ADD DX,CX
+05ED 83 D6 00                ADC SI,0
+05F0 3B DE                   CMP BX,SI
+05F2 77 06                   JA 05FA
+05F4 72 44                   JB 063A
+05F6 3B C2                   CMP AX,DX
+05F8 77 40                   JA 063A
+05FA 8B 55 02                MOV DX,W[DI+2]
+05FD 52                      PUSH DX
+05FE 80 E2 FC                AND DL,0FC
+0601 80 CA 02                OR DL,2
+0604 89 55 02                MOV W[DI+2],DX
+0607 50                      PUSH AX
+0608 53                      PUSH BX
+0609 A8 0F                   TEST AL,0F
+060B 74 08                   JE 0615
+060D 24 F0                   AND AL,0F0
+060F 05 10 00                ADD AX,010
+0612 83 D3 00                ADC BX,0
+0615 87 45 15                XCHG W[DI+015],AX
+0618 87 5D 17                XCHG W[DI+017],BX
+061B 50                      PUSH AX
+061C 53                      PUSH BX
+061D B4 3F                   MOV AH,03F
+061F B9 1C 00                MOV CX,01C
+0622 33 D2                   XOR DX,DX
+0624 1E                      PUSH DS
+0625 0E                      PUSH CS
+0626 1F                      POP DS
+0627 07                      POP ES
+0628 E8 E9 06                CALL 0D14
+062B 73 10                   JAE 063D
+062D 06                      PUSH ES
+062E 1F                      POP DS
+062F 8F 45 17                POP W[DI+017]
+0632 8F 45 15                POP W[DI+015]
+0635 5B                      POP BX
+0636 58                      POP AX
+0637 8F 45 02                POP W[DI+2]
+063A E9 54 01                JMP 0791
+063D 2B C1                   SUB AX,CX
+063F 75 EC                   JNE 062D
+0641 26 89 45 15             ES MOV W[DI+015],AX
+0645 26 89 45 17             ES MOV W[DI+017],AX
+0649 B4 40                   MOV AH,040
+064B E8 C6 06                CALL 0D14
+064E 72 DD                   JB 062D
+0650 2B C1                   SUB AX,CX
+0652 75 D9                   JNE 062D
+0654 06                      PUSH ES
+0655 1F                      POP DS
+0656 8F 45 17                POP W[DI+017]
+0659 8F 45 15                POP W[DI+015]
+065C 8F 45 13                POP W[DI+013]
+065F 8F 45 11                POP W[DI+011]
+0662 8F 45 02                POP W[DI+2]
+0665 80 6D 10 C8             SUB B[DI+010],0C8
+0669 E9 25 01                JMP 0791
+066C 3D 02 42                CMP AX,04202
+066F 75 2C                   JNE 069D
+0671 E8 A0 06                CALL 0D14
+0674 73 03                   JAE 0679
+0676 E9 18 01                JMP 0791
+0679 9C                      PUSHF
+067A 8F 46 12                POP W[BP+012]
+067D E8 5B 03                CALL 09DB
+0680 72 12                   JB 0694
+0682 80 7D 10 C8             CMP B[DI+010],0C8
+0686 72 0C                   JB 0694
+0688 2D 2E 0C                SUB AX,0C2E
+068B 83 DA 00                SBB DX,0
+068E 89 45 15                MOV W[DI+015],AX
+0691 89 55 17                MOV W[DI+017],DX
+0694 89 46 10                MOV W[BP+010],AX
+0697 89 56 0A                MOV W[BP+0A],DX
+069A E9 2D FE                JMP 04CA
+069D 80 FC 57                CMP AH,057
+06A0 75 41                   JNE 06E3
+06A2 3C 01                   CMP AL,1
+06A4 72 20                   JB 06C6
+06A6 74 03                   JE 06AB
+06A8 E9 E6 00                JMP 0791
+06AB 48                      DEC AX
+06AC 51                      PUSH CX
+06AD 52                      PUSH DX
+06AE E8 63 06                CALL 0D14
+06B1 58                      POP AX
+06B2 59                      POP CX
+06B3 72 F3                   JB 06A8
+06B5 80 FE C8                CMP DH,0C8
+06B8 72 EE                   JB 06A8
+06BA 80 FC C8                CMP AH,0C8
+06BD 73 E9                   JAE 06A8
+06BF 80 C4 C8                ADD AH,0C8
+06C2 92                      XCHG AX,DX
+06C3 B8 01 57                MOV AX,05701
+06C6 E8 4B 06                CALL 0D14
+06C9 72 DD                   JB 06A8
+06CB 9C                      PUSHF
+06CC 8F 46 12                POP W[BP+012]
+06CF 80 FE C8                CMP DH,0C8
+06D2 72 03                   JB 06D7
+06D4 80 EE C8                SUB DH,0C8
+06D7 89 46 10                MOV W[BP+010],AX
+06DA 89 4E 0C                MOV W[BP+0C],CX
+06DD 89 56 0A                MOV W[BP+0A],DX
+06E0 E9 E7 FD                JMP 04CA
+06E3 80 FC 3D                CMP AH,03D
+06E6 74 19                   JE 0701
+06E8 80 FC 6C                CMP AH,06C
+06EB 74 14                   JE 0701
+06ED 3D 00 4B                CMP AX,04B00
+06F0 74 0C                   JE 06FE
+06F2 80 FC 3E                CMP AH,03E
+06F5 74 03                   JE 06FA
+06F7 E9 97 00                JMP 0791
+06FA B4 45                   MOV AH,045
+06FC EB 03                   JMP 0701
+06FE B8 00 3D                MOV AX,03D00
+0701 E8 A4 02                CALL 09A8
+0704 E8 10 06                CALL 0D17
+0707 73 06                   JAE 070F
+0709 E8 9C 02                CALL 09A8
+070C E9 82 00                JMP 0791
+070F 2E A3 15 0C             CS MOV W[0C15],AX
+0713 E8 C5 02                CALL 09DB
+0716 72 71                   JB 0789
+0718 80 7D 10 C8             CMP B[DI+010],0C8
+071C 73 6B                   JAE 0789
+071E E8 18 02                CALL 0939
+0721 72 66                   JB 0789
+0723 33 C0                   XOR AX,AX
+0725 86 45 04                XCHG B[DI+4],AL
+0728 50                      PUSH AX
+0729 A8 04                   TEST AL,4
+072B 75 58                   JNE 0785
+072D B0 02                   MOV AL,2
+072F 87 45 02                XCHG W[DI+2],AX
+0732 50                      PUSH AX
+0733 FF 75 0D                PUSH W[DI+0D]
+0736 FF 75 0F                PUSH W[DI+0F]
+0739 33 C0                   XOR AX,AX
+073B 87 45 15                XCHG W[DI+015],AX
+073E 50                      PUSH AX
+073F 33 C0                   XOR AX,AX
+0741 87 45 17                XCHG W[DI+017],AX
+0744 50                      PUSH AX
+0745 FF 75 05                PUSH W[DI+5]
+0748 33 ED                   XOR BP,BP
+074A 81 7D 28 43 4F          CMP W[DI+028],04F43
+074F 75 07                   JNE 0758
+0751 80 7D 2A 4D             CMP B[DI+02A],04D
+0755 75 01                   JNE 0758
+0757 4D                      DEC BP
+0758 E8 7D 00                CALL 07D8
+075B 58                      POP AX
+075C 9C                      PUSHF
+075D E8 7B 02                CALL 09DB
+0760 88 65 06                MOV B[DI+6],AH
+0763 9D                      POPF
+0764 72 0D                   JB 0773
+0766 1E                      PUSH DS
+0767 E8 97 02                CALL 0A01
+076A 1F                      POP DS
+076B 80 45 10 C8             ADD B[DI+010],0C8
+076F 80 4D 06 40             OR B[DI+6],040
+0773 8F 45 17                POP W[DI+017]
+0776 8F 45 15                POP W[DI+015]
+0779 58                      POP AX
+077A 73 03                   JAE 077F
+077C 89 45 0F                MOV W[DI+0F],AX
+077F 8F 45 0D                POP W[DI+0D]
+0782 8F 45 02                POP W[DI+2]
+0785 58                      POP AX
+0786 88 45 04                MOV B[DI+4],AL
+0789 B4 3E                   MOV AH,03E
+078B E8 86 05                CALL 0D14
+078E E8 17 02                CALL 09A8
+0791 E4 21                   IN AL,021
+0793 24 FD                   AND AL,0FD
+0795 E6 21                   OUT 021,AL
+0797 B0 24                   MOV AL,024
+0799 2E C5 16 E7 0E          CS LDS DX,[0EE7]
+079E E8 E9 04                CALL 0C8A
+07A1 0E                      PUSH CS
+07A2 1F                      POP DS
+07A3 EB FE                   JMP 07A3
+07A5 B0 01                   MOV AL,1
+07A7 E8 CF 04                CALL 0C79
+07AA 89 1E 5B 0E             MOV W[0E5B],BX
+07AE 8C 06 5D 0E             MOV W[0E5D],ES
+07B2 C6 06 28 0A 47          MOV B[0A28],047
+07B7 C6 06 2E 0C 05          MOV B[0C2E],5
+07BC BA 01 0A                MOV DX,0A01
+07BF E8 C8 04                CALL 0C8A
+07C2 E8 F1 04                CALL 0CB6
+07C5 50                      PUSH AX
+07C6 9C                      PUSHF
+07C7 58                      POP AX
+07C8 80 CC 01                OR AH,1
+07CB 50                      PUSH AX
+07CC 9D                      POPF
+07CD 58                      POP AX
+07CE 2E FF 2E DB 0E          CS JMP D[0EDB]
+07D3 E8 E0 04                CALL 0CB6
+07D6 EB F6                   JMP 07CE
+07D8 C4 75 11                LES SI,[DI+011]
+07DB 8C C7                   MOV DI,ES
+07DD B4 3F                   MOV AH,03F
+07DF B9 1C 00                MOV CX,01C
+07E2 33 D2                   XOR DX,DX
+07E4 0E                      PUSH CS
+07E5 0E                      PUSH CS
+07E6 1F                      POP DS
+07E7 07                      POP ES
+07E8 E8 29 05                CALL 0D14
+07EB 73 02                   JAE 07EF
+07ED F9                      STC
+07EE C3                      RET
+07EF 3B C1                   CMP AX,CX
+07F1 75 FA                   JNE 07ED
+07F3 56                      PUSH SI
+07F4 57                      PUSH DI
+07F5 33 F6                   XOR SI,SI
+07F7 BF 3B 0C                MOV DI,0C3B
+07FA 8B DF                   MOV BX,DI
+07FC F3 A5                   REP MOVSW
+07FE 5F                      POP DI
+07FF 5E                      POP SI
+0800 A1 00 00                MOV AX,W[0]
+0803 3D 4D 5A                CMP AX,05A4D
+0806 74 45                   JE 084D
+0808 3D 5A 4D                CMP AX,04D5A
+080B 74 40                   JE 084D
+080D 45                      INC BP
+080E 75 DD                   JNE 07ED
+0810 0B FF                   OR DI,DI
+0812 75 D9                   JNE 07ED
+0814 81 FE EA EF             CMP SI,0EFEA
+0818 77 D3                   JA 07ED
+081A 81 FE E8 03             CMP SI,03E8
+081E 72 CD                   JB 07ED
+0820 E8 EA 00                CALL 090D
+0823 74 C8                   JE 07ED
+0825 C6 07 E9                MOV B[BX],0E9
+0828 81 C6 00 01             ADD SI,0100
+082C E8 42 01                CALL 0971
+082F E8 A9 01                CALL 09DB
+0832 81 6D 15 00 01          SUB W[DI+015],0100
+0837 0E                      PUSH CS
+0838 1F                      POP DS
+0839 56                      PUSH SI
+083A B1 04                   MOV CL,4
+083C D3 EE                   SHR SI,CL
+083E 89 36 74 00             MOV W[074],SI
+0842 5E                      POP SI
+0843 81 C6 6E FF             ADD SI,-092
+0847 89 77 01                MOV W[BX+1],SI
+084A E9 93 00                JMP 08E0
+084D 83 7F 0C FF             CMP W[BX+0C],-1
+0851 75 9A                   JNE 07ED
+0853 8B C6                   MOV AX,SI
+0855 8B D7                   MOV DX,DI
+0857 B9 00 02                MOV CX,0200
+085A F7 F1                   DIV CX
+085C 0B D2                   OR DX,DX
+085E 74 01                   JE 0861
+0860 40                      INC AX
+0861 39 47 04                CMP W[BX+4],AX
+0864 75 78                   JNE 08DE
+0866 39 57 02                CMP W[BX+2],DX
+0869 75 73                   JNE 08DE
+086B 0B D2                   OR DX,DX
+086D 75 01                   JNE 0870
+086F 40                      INC AX
+0870 E8 FE 00                CALL 0971
+0873 05 06 00                ADD AX,6
+0876 81 C2 34 12             ADD DX,01234
+087A 80 FE 01                CMP DH,1
+087D 76 01                   JBE 0880
+087F 40                      INC AX
+0880 80 E6 01                AND DH,1
+0883 89 47 04                MOV W[BX+4],AX
+0886 89 57 02                MOV W[BX+2],DX
+0889 B9 04 00                MOV CX,4
+088C 8B 47 08                MOV AX,W[BX+8]
+088F 33 D2                   XOR DX,DX
+0891 D1 E0                   SHL AX,1
+0893 D1 DA                   RCR DX,1
+0895 E2 FA                   LOOP 0891
+0897 2B F0                   SUB SI,AX
+0899 1B FA                   SBB DI,DX
+089B BD 02 EC                MOV BP,0EC02
+089E 3B F5                   CMP SI,BP
+08A0 72 05                   JB 08A7
+08A2 83 EE 10                SUB SI,010
+08A5 E2 F7                   LOOP 089E
+08A7 83 FF 0F                CMP DI,0F
+08AA 77 32                   JA 08DE
+08AC 91                      XCHG AX,CX
+08AD B1 04                   MOV CL,4
+08AF D3 CF                   ROR DI,CL
+08B1 2B F8                   SUB DI,AX
+08B3 72 29                   JB 08DE
+08B5 56                      PUSH SI
+08B6 D3 EE                   SHR SI,CL
+08B8 89 36 74 00             MOV W[074],SI
+08BC 5E                      POP SI
+08BD 89 77 14                MOV W[BX+014],SI
+08C0 83 47 14 71             ADD W[BX+014],071
+08C4 89 7F 16                MOV W[BX+016],DI
+08C7 56                      PUSH SI
+08C8 2B F5                   SUB SI,BP
+08CA 83 E6 FE                AND SI,-2
+08CD 89 77 10                MOV W[BX+010],SI
+08D0 83 EF 10                SUB DI,010
+08D3 89 7F 0E                MOV W[BX+0E],DI
+08D6 D3 FD                   SAR BP,CL
+08D8 29 6F 0A                SUB W[BX+0A],BP
+08DB 5E                      POP SI
+08DC 72 02                   JB 08E0
+08DE F9                      STC
+08DF C3                      RET
+08E0 B4 40                   MOV AH,040
+08E2 B9 00 00                MOV CX,0
+08E5 33 D2                   XOR DX,DX
+08E7 E8 2A 04                CALL 0D14
+08EA 72 F2                   JB 08DE
+08EC 2B C1                   SUB AX,CX
+08EE 75 EE                   JNE 08DE
+08F0 E8 E8 00                CALL 09DB
+08F3 89 45 15                MOV W[DI+015],AX
+08F6 89 45 17                MOV W[DI+017],AX
+08F9 B4 40                   MOV AH,040
+08FB B9 1C 00                MOV CX,01C
+08FE BA 3B 0C                MOV DX,0C3B
+0901 0E                      PUSH CS
+0902 1F                      POP DS
+0903 E8 0E 04                CALL 0D14
+0906 72 D6                   JB 08DE
+0908 2B C1                   SUB AX,CX
+090A 75 D2                   JNE 08DE
+090C C3                      RET
+090D 57                      PUSH DI
+090E BF 29 08                MOV DI,0829
+0911 B1 07                   MOV CL,7
+0913 F2 AE                   REPNE SCASB
+0915 74 10                   JE 0927
+0917 B1 03                   MOV CL,3
+0919 F2 AF                   REPNE SCASW
+091B 74 0A                   JE 0927
+091D AE                      SCASB
+091E 75 07                   JNE 0927
+0920 A0 02 00                MOV AL,B[2]
+0923 AE                      SCASB
+0924 74 01                   JE 0927
+0926 AE                      SCASB
+0927 5F                      POP DI
+0928 C3                      RET
+0929 00 90 F4 F5             ADD B[BX+SI+0F5F4],DL
+092D F8                      CLC
+092E F9                      STC
+092F C3                      RET
+0930 CD 20                   INT 020                ; Program Termination
+0932 B4 09                   MOV AH,9
+0934 B4 4C                   MOV AH,04C
+0936 B8 09 4C                MOV AX,04C09
+0939 8B 55 05                MOV DX,W[DI+5]
+093C F6 C6 80                TEST DH,080
+093F 75 2E                   JNE 096F
+0941 83 E2 3F                AND DX,03F
+0944 8A DA                   MOV BL,DL
+0946 43                      INC BX
+0947 B8 08 44                MOV AX,04408
+094A E8 CA 03                CALL 0D17
+094D 73 07                   JAE 0956
+094F 80 FC 01                CMP AH,1
+0952 74 1B                   JE 096F
+0954 F9                      STC
+0955 C3                      RET
+0956 48                      DEC AX
+0957 74 16                   JE 096F
+0959 B8 01 02                MOV AX,0201
+095C BB 57 0C                MOV BX,0C57
+095F B9 01 00                MOV CX,1
+0962 0E                      PUSH CS
+0963 07                      POP ES
+0964 CD 13                   INT 013              ; Disk Services
+0966 72 EC                   JB 0954
+0968 B8 01 03                MOV AX,0301
+096B CD 13                   INT 013              ; Disk Services
+096D 72 E5                   JB 0954
+096F F8                      CLC
+0970 C3                      RET
+0971 C7 06 E3 07 2E 0C       MOV W[07E3],0C2E
+0977 C7 06 78 07 2E 00       MOV W[0778],02E
+097D F7 C6 0F 00             TEST SI,0F
+0981 74 15                   JE 0998
+0983 56                      PUSH SI
+0984 F7 DE                   NEG SI
+0986 83 E6 0F                AND SI,0F
+0989 29 36 E3 07             SUB W[07E3],SI
+098D 01 36 78 07             ADD W[0778],SI
+0991 5E                      POP SI
+0992 83 E6 F0                AND SI,-010
+0995 83 C6 10                ADD SI,010
+0998 50                      PUSH AX
+0999 1E                      PUSH DS
+099A 97                      XCHG AX,DI
+099B E8 3D 00                CALL 09DB
+099E 89 75 15                MOV W[DI+015],SI
+09A1 89 45 17                MOV W[DI+017],AX
+09A4 97                      XCHG AX,DI
+09A5 1F                      POP DS
+09A6 58                      POP AX
+09A7 C3                      RET
+09A8 50                      PUSH AX
+09A9 53                      PUSH BX
+09AA 52                      PUSH DX
+09AB 1E                      PUSH DS
+09AC 06                      PUSH ES
+09AD B0 13                   MOV AL,013
+09AF BF A3 0E                MOV DI,0EA3
+09B2 E8 C4 02                CALL 0C79
+09B5 8C C2                   MOV DX,ES
+09B7 2E 87 1D                CS XCHG W[DI],BX
+09BA 87 DA                   XCHG DX,BX
+09BC 2E 87 5D 02             CS XCHG W[DI+2],BX
+09C0 8E DB                   MOV DS,BX
+09C2 E8 C5 02                CALL 0C8A
+09C5 3C 15                   CMP AL,015
+09C7 B0 15                   MOV AL,015
+09C9 BF AB 0E                MOV DI,0EAB
+09CC 72 E4                   JB 09B2
+09CE B0 40                   MOV AL,040
+09D0 BF 57 0F                MOV DI,0F57
+09D3 74 DD                   JE 09B2
+09D5 07                      POP ES
+09D6 1F                      POP DS
+09D7 5A                      POP DX
+09D8 5B                      POP BX
+09D9 58                      POP AX
+09DA C3                      RET
+09DB 50                      PUSH AX
+09DC 53                      PUSH BX
+09DD 2E 8B 1E 15 0C          CS MOV BX,W[0C15]
+09E2 B8 20 12                MOV AX,01220
+09E5 CD 2F                   INT 02F                ; Dos Multiplex
+09E7 26 8A 1D                ES MOV BL,B[DI]
+09EA 3C FF                   CMP AL,0FF
+09EC 74 0F                   JE 09FD
+09EE B8 16 12                MOV AX,01216
+09F1 CD 2F                   INT 02F                ; Dos Multiplex
+09F3 06                      PUSH ES
+09F4 1F                      POP DS
+09F5 F6 45 05 80             TEST B[DI+5],080
+09F9 75 02                   JNE 09FD
+09FB F8                      CLC
+09FC B0 F9                   MOV AL,0F9
+09FE 5B                      POP BX
+09FF 58                      POP AX
+0A00 C3                      RET
+0A01 0E                      PUSH CS
+0A02 1F                      POP DS
+0A03 FF 06 51 09             INC W[0951]
+0A07 A1 A3 0E                MOV AX,W[0EA3]
+0A0A 3B 06 57 0F             CMP AX,W[0F57]
+0A0E 74 12                   JE RET
+0A10 A1 51 09                MOV AX,W[0951]
+0A13 A8 1F                   TEST AL,01F
+0A15 74 0C                   JE 0A23
+0A17 B9 66 06                MOV CX,0666
+0A1A 33 D2                   XOR DX,DX
+0A1C F7 F1                   DIV CX
+0A1E 0B D2                   OR DX,DX
+0A20 74 23                   JE 0A45
+0A22 C3                      RET
+0A23 E8 2D 00                CALL 0A53
+0A26 B8 01 02                MOV AX,0201
+0A29 BB 57 0C                MOV BX,0C57
+0A2C CD 13                   INT 013               ; Disk Services
+0A2E 72 F2                   JB RET
+0A30 A1 6C 04                MOV AX,W[046C]
+0A33 80 E4 01                AND AH,1
+0A36 53                      PUSH BX
+0A37 03 D8                   ADD BX,AX
+0A39 E4 40                   IN AL,040
+0A3B 26 08 07                ES OR B[BX],AL
+0A3E 5B                      POP BX
+0A3F B8 01 03                MOV AX,0301
+0A42 CD 13                   INT 013               ; Disk Services
+0A44 C3                      RET
+0A45 E8 0B 00                CALL 0A53
+0A48 B8 01 05                MOV AX,0501
+0A4B BB 57 0C                MOV BX,0C57
+0A4E CD 13                   INT 013               ; Disk Services
+0A50 C3                      RET
+0A51 00 00                   ADD B[BX+SI],AL
+0A53 B4 08                   MOV AH,8
+0A55 B2 80                   MOV DL,080
+0A57 CD 13                   INT 013                ; Disk Services
+0A59 73 05                   JAE 0A60
+0A5B B9 47 00                MOV CX,047
+0A5E B6 04                   MOV DH,4
+0A60 33 C0                   XOR AX,AX
+0A62 8E D8                   MOV DS,AX
+0A64 A1 6C 04                MOV AX,W[046C]
+0A67 0E                      PUSH CS
+0A68 07                      POP ES
+0A69 52                      PUSH DX
+0A6A 51                      PUSH CX
+0A6B 8B D9                   MOV BX,CX
+0A6D B1 06                   MOV CL,6
+0A6F D3 EB                   SHR BX,CL
+0A71 8B D0                   MOV DX,AX
+0A73 F7 F3                   DIV BX
+0A75 0B DB                   OR BX,BX
+0A77 74 04                   JE 0A7D
+0A79 33 D2                   XOR DX,DX
+0A7B F7 F3                   DIV BX
+0A7D D3 E2                   SHL DX,CL
+0A7F 8B CA                   MOV CX,DX
+0A81 5B                      POP BX
+0A82 80 E3 3F                AND BL,03F
+0A85 E4 40                   IN AL,040
+0A87 8A E0                   MOV AH,AL
+0A89 0A DB                   OR BL,BL
+0A8B 74 04                   JE 0A91
+0A8D 32 E4                   XOR AH,AH
+0A8F F6 F3                   DIV BL
+0A91 80 E4 3F                AND AH,03F
+0A94 0A CC                   OR CL,AH
+0A96 5B                      POP BX
+0A97 E4 40                   IN AL,040
+0A99 8A E0                   MOV AH,AL
+0A9B 0A FF                   OR BH,BH
+0A9D 74 04                   JE 0AA3
+0A9F 32 E4                   XOR AH,AH
+0AA1 F6 F7                   DIV BH
+0AA3 86 E6                   XCHG DH,AH
+0AA5 B2 80                   MOV DL,080
+0AA7 C3                      RET
+0AA8 E4 21                   IN AL,021
+0AAA 0C 02                   OR AL,2
+0AAC E6 21                   OUT 021,AL
+0AAE B8 FF 00                MOV AX,0FF
+0AB1 E6 70                   OUT 070,AL
+0AB3 86 C4                   XCHG AH,AL
+0AB5 E6 71                   OUT 071,AL
+0AB7 86 C4                   XCHG AH,AL
+0AB9 48                      DEC AX
+0ABA 79 F5                   JNS 0AB1
+0ABC B2 80                   MOV DL,080
+0ABE 52                      PUSH DX
+0ABF B4 08                   MOV AH,8
+0AC1 E8 49 02                CALL 0D0D
+0AC4 58                      POP AX
+0AC5 8A E0                   MOV AH,AL
+0AC7 2C 80                   SUB AL,080
+0AC9 3A C2                   CMP AL,DL
+0ACB 75 02                   JNE 0ACF
+0ACD FA                      CLI
+0ACE F4                      HLT
+0ACF 8A D4                   MOV DL,AH
+0AD1 8B F2                   MOV SI,DX
+0AD3 80 E1 C0                AND CL,0C0
+0AD6 8B E9                   MOV BP,CX
+0AD8 BB 98 01                MOV BX,0198
+0ADB 0E                      PUSH CS
+0ADC 07                      POP ES
+0ADD 32 F6                   XOR DH,DH
+0ADF 33 C9                   XOR CX,CX
+0AE1 B8 01 05                MOV AX,0501
+0AE4 E8 26 02                CALL 0D0D
+0AE7 80 E1 C0                AND CL,0C0
+0AEA 3B CD                   CMP CX,BP
+0AEC 74 09                   JE 0AF7
+0AEE FE C5                   INC CH
+0AF0 75 EF                   JNE 0AE1
+0AF2 80 C1 40                ADD CL,040
+0AF5 EB EA                   JMP 0AE1
+0AF7 FE C6                   INC DH
+0AF9 3B D6                   CMP DX,SI
+0AFB 76 E2                   JBE 0ADF
+0AFD FE C2                   INC DL
+0AFF EB BD                   JMP 0ABE
+0B01 2E 8C 1E FA 0A          CS MOV W[0AFA],DS
+0B06 0E                      PUSH CS
+0B07 1F                      POP DS
+0B08 A3 FF 0A                MOV W[0AFF],AX
+0B0B 89 1E 02 0B             MOV W[0B02],BX
+0B0F 89 0E 05 0B             MOV W[0B05],CX
+0B13 89 16 08 0B             MOV W[0B08],DX
+0B17 89 3E 0B 0B             MOV W[0B0B],DI
+0B1B C6 06 F2 0A 03          MOV B[0AF2],3
+0B20 5B                      POP BX
+0B21 59                      POP CX
+0B22 5A                      POP DX
+0B23 8C C8                   MOV AX,CS
+0B25 3B C1                   CMP AX,CX
+0B27 75 FE                   JNE 0B27
+0B29 E9 CA 00                JMP 0BF6
+0B2C 3B 0E 43 0A             CMP CX,W[0A43]
+0B30 77 58                   JA 0B8A
+0B32 89 1E 57 12             MOV W[01257],BX
+0B36 89 0E 59 12             MOV W[01259],CX
+0B3A C6 06 28 0A 23          MOV B[0A28],023
+0B3F EB 49                   JMP 0B8A
+0B41 81 F9 34 12             CMP CX,01234
+0B45 77 43                   JA 0B8A
+0B47 BF DB 0E                MOV DI,0EDB
+0B4A EB 0E                   JMP 0B5A
+0B4C BF A3 0E                MOV DI,0EA3
+0B4F 80 FD C8                CMP CH,0C8
+0B52 72 36                   JB 0B8A
+0B54 81 F9 00 F4             CMP CX,0F400
+0B58 77 30                   JA 0B8A
+0B5A 89 1D                   MOV W[DI],BX
+0B5C 89 4D 02                MOV W[DI+2],CX
+0B5F C6 06 F2 0A 00          MOV B[0AF2],0
+0B64 EB 24                   JMP 0B8A
+0B66 BF AB 0E                MOV DI,0EAB
+0B69 EB E4                   JMP 0B4F
+0B6B BF 57 0F                MOV DI,0F57
+0B6E EB DF                   JMP 0B4F
+0B70 FE 0E 2E 0C             DEC B[0C2E]
+0B74 75 14                   JNE 0B8A
+0B76 B0 01                   MOV AL,1
+0B78 52                      PUSH DX
+0B79 C5 16 5B 0E             LDS DX,[0E5B]
+0B7D E8 0A 01                CALL 0C8A
+0B80 5A                      POP DX
+0B81 E8 53 01                CALL 0CD7
+0B84 2E C6 06 F2 0A 00       CS MOV B[0AF2],0
+0B8A 8E D9                   MOV DS,CX
+0B8C 33 FF                   XOR DI,DI
+0B8E 8B 01                   MOV AX,W[BX+DI]
+0B90 3C F0                   CMP AL,0F0
+0B92 74 12                   JE 0BA6
+0B94 3C F2                   CMP AL,0F2
+0B96 74 0E                   JE 0BA6
+0B98 3C F3                   CMP AL,0F3
+0B9A 74 0A                   JE 0BA6
+0B9C 3C 9C                   CMP AL,09C
+0B9E 73 09                   JAE 0BA9
+0BA0 24 E7                   AND AL,0E7
+0BA2 3C 26                   CMP AL,026
+0BA4 75 4B                   JNE 0BF1
+0BA6 47                      INC DI
+0BA7 EB E5                   JMP 0B8E
+0BA9 75 0C                   JNE 0BB7
+0BAB 80 E6 FE                AND DH,0FE
+0BAE 52                      PUSH DX
+0BAF 8D 59 01                LEA BX,[BX+DI+1]
+0BB2 80 CE 01                OR DH,1
+0BB5 EB D5                   JMP 0B8C
+0BB7 3C 9D                   CMP AL,09D
+0BB9 75 03                   JNE 0BBE
+0BBB 5A                      POP DX
+0BBC EB F1                   JMP 0BAF
+0BBE 3C CF                   CMP AL,0CF
+0BC0 75 05                   JNE 0BC7
+0BC2 5B                      POP BX
+0BC3 59                      POP CX
+0BC4 5A                      POP DX
+0BC5 EB EB                   JMP 0BB2
+0BC7 3C CD                   CMP AL,0CD
+0BC9 74 12                   JE 0BDD
+0BCB 3C CC                   CMP AL,0CC
+0BCD B4 03                   MOV AH,3
+0BCF 74 0B                   JE 0BDC
+0BD1 3C CE                   CMP AL,0CE
+0BD3 B4 04                   MOV AH,4
+0BD5 75 1A                   JNE 0BF1
+0BD7 F6 C6 08                TEST DH,8
+0BDA 74 15                   JE 0BF1
+0BDC 4B                      DEC BX
+0BDD 8D 59 02                LEA BX,[BX+DI+2]
+0BE0 80 E6 FE                AND DH,0FE
+0BE3 52                      PUSH DX
+0BE4 51                      PUSH CX
+0BE5 53                      PUSH BX
+0BE6 86 C4                   XCHG AH,AL
+0BE8 06                      PUSH ES
+0BE9 E8 8D 00                CALL 0C79
+0BEC 8C C1                   MOV CX,ES
+0BEE 07                      POP ES
+0BEF EB C1                   JMP 0BB2
+0BF1 EB FE                   JMP 0BF1
+0BF3 80 E6 FE                AND DH,0FE
+0BF6 52                      PUSH DX
+0BF7 51                      PUSH CX
+0BF8 53                      PUSH BX
+0BF9 B8 00 00                MOV AX,0
+0BFC 8E D8                   MOV DS,AX
+0BFE B8 00 00                MOV AX,0
+0C01 BB 00 00                MOV BX,0
+0C04 B9 00 00                MOV CX,0
+0C07 BA 00 00                MOV DX,0
+0C0A BF 00 00                MOV DI,0
+0C0D CF                      IRET
+0C0E 9C                      PUSHF
+0C0F 5A                      POP DX
+0C10 80 E6 FE                AND DH,0FE
+0C13 52                      PUSH DX
+0C14 52                      PUSH DX
+0C15 9D                      POPF
+0C16 16                      PUSH SS
+0C17 17                      POP SS
+0C18 9C                      PUSHF
+0C19 5A                      POP DX
+0C1A F6 C6 01                TEST DH,1
+0C1D 5A                      POP DX
+0C1E 74 18                   JE RET
+0C20 33 ED                   XOR BP,BP
+0C22 8C D1                   MOV CX,SS
+0C24 FA                      CLI
+0C25 8E D5                   MOV SS,BP
+0C27 C4 7E 04                LES DI,[BP+4]
+0C2A 8E D1                   MOV SS,CX
+0C2C FB                      STI
+0C2D B0 CF                   MOV AL,0CF
+0C2F AA                      STOSB
+0C30 52                      PUSH DX
+0C31 9D                      POPF
+0C32 C7 06 5B 01 4B 08       MOV W[015B],084B
+0C38 C3                      RET
+0C39 B9 00 02                MOV CX,0200
+0C3C 33 F6                   XOR SI,SI
+0C3E BF 57 0E                MOV DI,0E57
+0C41 8E DE                   MOV DS,SI
+0C43 FC                      CLD
+0C44 F3 A5                   REP MOVSW
+0C46 BE 4C 00                MOV SI,04C
+0C49 56                      PUSH SI
+0C4A A5                      MOVSW
+0C4B A5                      MOVSW
+0C4C 5E                      POP SI
+0C4D 80 3E 75 04 00          CMP B[0475],0
+0C52 75 05                   JNE 0C59
+0C54 BF 57 0F                MOV DI,0F57
+0C57 A5                      MOVSW
+0C58 A5                      MOVSW
+0C59 0E                      PUSH CS
+0C5A 1F                      POP DS
+0C5B C3                      RET
+0C5C 52                      PUSH DX
+0C5D B0 09                   MOV AL,9
+0C5F BA 36 02                MOV DX,0236
+0C62 E8 25 00                CALL 0C8A
+0C65 B0 13                   MOV AL,013
+0C67 BA AA 02                MOV DX,02AA
+0C6A E8 1D 00                CALL 0C8A
+0C6D C6 06 A4 06 2E          MOV B[06A4],02E
+0C72 C6 06 AB 02 00          MOV B[02AB],0
+0C77 5A                      POP DX
+0C78 C3                      RET
+0C79 50                      PUSH AX
+0C7A 32 E4                   XOR AH,AH
+0C7C 03 C0                   ADD AX,AX
+0C7E 03 C0                   ADD AX,AX
+0C80 93                      XCHG AX,BX
+0C81 33 C0                   XOR AX,AX
+0C83 8E C0                   MOV ES,AX
+0C85 26 C4 1F                ES LES BX,[BX]
+0C88 58                      POP AX
+0C89 C3                      RET
+0C8A 50                      PUSH AX
+0C8B 53                      PUSH BX
+0C8C 1E                      PUSH DS
+0C8D 32 E4                   XOR AH,AH
+0C8F 03 C0                   ADD AX,AX
+0C91 03 C0                   ADD AX,AX
+0C93 93                      XCHG AX,BX
+0C94 33 C0                   XOR AX,AX
+0C96 1E                      PUSH DS
+0C97 8E D8                   MOV DS,AX
+0C99 89 17                   MOV W[BX],DX
+0C9B 8F 47 02                POP W[BX+2]
+0C9E 1F                      POP DS
+0C9F 5B                      POP BX
+0CA0 58                      POP AX
+0CA1 C3                      RET
+0CA2 2E 8F 06 2F 0C          CS POP W[0C2F]
+0CA7 9C                      PUSHF
+0CA8 50                      PUSH AX
+0CA9 53                      PUSH BX
+0CAA 51                      PUSH CX
+0CAB 52                      PUSH DX
+0CAC 55                      PUSH BP
+0CAD 56                      PUSH SI
+0CAE 57                      PUSH DI
+0CAF 1E                      PUSH DS
+0CB0 06                      PUSH ES
+0CB1 2E FF 26 2F 0C          CS JMP W[0C2F]
+0CB6 2E 8F 06 2F 0C          CS POP W[0C2F]
+0CBB 07                      POP ES
+0CBC 1F                      POP DS
+0CBD 5F                      POP DI
+0CBE 5E                      POP SI
+0CBF 5D                      POP BP
+0CC0 5A                      POP DX
+0CC1 59                      POP CX
+0CC2 5B                      POP BX
+0CC3 58                      POP AX
+0CC4 9D                      POPF
+0CC5 2E FF 26 2F 0C          CS JMP W[0C2F]
+0CCA E8 D5 FF                CALL 0CA2
+0CCD BE 31 0C                MOV SI,0C31
+0CD0 2E C4 3E 57 12          CS LES DI,[01257]
+0CD5 EB 0B                   JMP 0CE2
+0CD7 E8 C8 FF                CALL 0CA2
+0CDA BE 36 0C                MOV SI,0C36
+0CDD 2E C4 3E DB 0E          CS LES DI,[0EDB]
+0CE2 0E                      PUSH CS
+0CE3 1F                      POP DS
+0CE4 80 3E A4 06 00          CMP B[06A4],0
+0CE9 75 0E                   JNE 0CF9
+0CEB B9 05 00                MOV CX,5
+0CEE FC                      CLD
+0CEF AC                      LODSB
+0CF0 26 86 05                ES XCHG B[DI],AL
+0CF3 88 44 FF                MOV B[SI-1],AL
+0CF6 47                      INC DI
+0CF7 E2 F6                   LOOP 0CEF
+0CF9 E8 BA FF                CALL 0CB6
+0CFC C3                      RET
+0CFD E8 CA FF                CALL 0CCA
+0D00 9C                      PUSHF
+0D01 2E FF 1E 57 12          CS CALL D[01257]
+0D06 E8 C1 FF                CALL 0CCA
+0D09 C3                      RET
+0D0A B0 03                   MOV AL,3
+0D0C CF                      IRET
+0D0D 9C                      PUSHF
+0D0E 2E FF 1E A3 0E          CS CALL D[0EA3]
+0D13 C3                      RET
+0D14 BB 00 00                MOV BX,0
+0D17 9C                      PUSHF
+0D18 2E FF 1E DB 0E          CS CALL D[0EDB]
+0D1D C3                      RET
+0D1E 00 00                   ADD B[BX+SI],AL
+0D20 00 00                   ADD B[BX+SI],AL
+0D22 00 00                   ADD B[BX+SI],AL
+0D24 00 00                   ADD B[BX+SI],AL
+0D26 00 00                   ADD B[BX+SI],AL
+0D28 00 00                   ADD B[BX+SI],AL
+0D2A 00 00                   ADD B[BX+SI],AL
+0D2C 00 00                   ADD B[BX+SI],AL
