@@ -1,0 +1,618 @@
+                    *WARNING* *WARNING* *WARNING* *WARNING*
+
+    This document may violate your local community standards on obscenity.
+
+                       [Information is sexy, not sexual]
+
+  Consult your local religious or moral authorities for further instruction.
+
+
+babybabybabybabybabybabybabybabybabybabybabybabybabybabybabybabybabybabybaby
+babybaby       yba       aby      byba       abyb     byba          babybaby
+babybaby  bybabyba  babybaby  byb  yba  babybaby  byb  yba  ba  ba  babybaby
+babybaby       yba  babybaby       yba       aby       yba  ba  ba  babybaby
+babybabybabyb  yba  babybaby  byb  yba  babybaby  byb  yba  ba  ba  babybaby
+babybaby       yba       aby  byb  yba       aby  byb  yba  ba  ba  babybaby
+babybabybabybabybabybabybabybabybabybabybabybabybabybabybabybabybabybabybaby
+
+                             "You are Number Six"
+
+                               February 13, 1993
+  __________________________________________________________________________
+ |                                                                          |
+ | Cyberlicious  |    Editor : Blade X       |  The Bamboo Gardens      |
+ | PO Box 4510       | bladex@wixer.cactus.org   |  (512) 385-2941          |
+ | Austin, TX 78765  |  Neo-Wobblie Node # 269   |  WWIV : 46@5285          |
+ |__________________________________________________________________________|
+                                           |
+                                           |
+                    INDEX                  |               OUTDEX
+                                           |
+Legal Disclaimer                           |
+Back Issues                                |     Apartmentopia -- a New Edge
+Subscriptions                              |          apartment complex
+                                            \
+Ediborial         Cyberpunk E-zines          \   Q&A :  Advice column by
+Interview         David Blair, Wax            \       Blade X Lax, the
+News              Agrippa: Book of the Dead    \      cyberpunk's cyberpunk.
+                                                \
+Reviews           Under Siege                  __\__________________________
+                  Sin                         /                             |
+                  Sound Photosynthesis       /  Either catch a wave or get  |
+                  Snow Crash                /                               |
+                  Lethal Enforcer          / a grip, cuz it's only gonna    |
+                  Gray Areas              /                                 |
+                                         /           get buzzier.           |
+Next Issue : SXSW                       /___________________________________|
+
+                         SOFTWARE LICENSING AGREEMENT
+
+                        "Some people just don't get it"
+
+                                  DISCLAIMER
+
+Scream Baby Global Headquarters are located in Austin, Texas, USA, and this
+location shall be considered the site of jurisdiction for any criminal or
+civil course of action(s) taken by or against the publisher, Cyberlicious
+.
+
+Any statement or statements -- either contained in Scream Baby and/or made by
+the publisher -- that could possibly be interpreted as libelous, defamatory,
+or slanderous, is actually *NOT* libel, defamation, or slander, but rather
+fair commentary and free speech, protected by the First Amendment.
+
+By continuing to read any more of this document, you, the home viewer, grant
+implicit agreement to abide and comply with these regulations.  And another
+thing, any other regulations I may decide to implement in the future.
+
+If you do not wish to abide by these restrictions, simply use your system's
+method-of-choice for discarding documents and go do or read something else
+instead.  People tell me _Wired_ is pretty cool.
+
+Contents are copyrighted, 1993, by the most powerful and litiginous nation on
+the planet.
+
+                            America, you wise guy.
+      __________________________________________________________________
+     /                                                                  \
+    / Statement of Purpose : Gray Areas exists to examine the gray areas \
+   |      of life.  We hope to unite poeple involved in all sorts of      \
+   |  alternative lifestyles and deviant subcultures. We are everywhere!   \
+   |_________________________________                                       \
+                                     \      -- Fall 1992 Gray Areas, page 5 |
+                                      \    [see review later in this issue] |
+                                       \____________________________________|
+
+                             BABY GOT BACK ISSUES
+
+There are so many easy and fun ways to get back issues of Scream Baby, there
+is really no excuse for anyone not to have your very own copy.
+
+FTP SITES     ftp.eff.org    /pub/journals
+
+Also, The WEll is setting up an anonymous ftp site ANY DAY NOW, and all of the
+digital Cyberlicious ! products will eventually be found there, even the
+stupid ones.
+
+PRIVATE BBS SYSTEMS
+
+    Tejas BBS              (512) 467-0663   14.4K modem, fast pick-up site
+    Bamboo Gardens North   (512) 385-2941   2400 baud, 800+ textfiles
+         a.k.a. The Home for Wayward Information Junkies
+
+STOP BY MY HOUSE
+
+    when I'm home and copy it DIRECTLY FROM MY COMPUTER SYSTEM.  Bring your
+own 5.25" disks, please. Bring me some food while you are at it.
+       ________________________________________________________________
+      |                                                                |
+      |  True Life Story: I buy Tom Maddox's novel, Halo, at Wal-mart  |
+      |  for 2.36 plus tax. I'm reading on the bus and look up.  The   |
+      |  guy on my left is reading William S. Burrough's Naked Lunch.  |
+      |  Guy on my right is scanning up and down the pages of a world  |
+      |  atlas/almanac with lots of interesting facts on the average   |
+      |  rainfall of Eastern European countries.  I'm in the middle,   |
+      |  reading Halo.                                                 |
+      |________________________________________________________________|
+
+                                 SUBSCRIPTIONS
+
+If you look at back issues of Scream Baby, you will find that there are
+several methods in order to get a subscription of Scream Baby.  Choose the one
+you like best.  Or simply send me e-mail.
+                      __________________________________
+                     /                                  \
+                    /      Too Much Coffee Man Says:     \
+                   /       "It's a Fine Line Between      \
+                  /        Sayings That Make Sense."       \
+                 /                                          \
+                /    -- Too Much Coffeeman #2, back cover    \
+               /______________________________________________\
+
+
+                         EDIBORIAL : CYBERPUNK E-ZINES
+
+I have stumbled across several references lately to the "numerous" cyberpunk
+electronic publications available on the Net.
+
+Huh?
+
+My scorecard reads 2 e-zines, 2 FAQs, and 3 mailing lists that provide
+information on the New Edge intersection of art, science, and pop culture.
+
+So someone must be using a different definition of cyberpunk.
+
+I say that cyberpunk is a conversation, not a thing.  You can't go to the
+store and buy a six pack of Shiner Bock, some Cheetos, and then say, oh yeah,
+let me have 2 ounces of cyberpunk.
+
+It is not an object, not a commodity.  Time magazine is a commodity.  An
+article in Time magazine is an object.  But neither is cyberpunk.
+
+I'm not a cyberpunk.  You're not a cyberpunk.  We *can't* be, since identity
+is a thing as well, and I've already said cyberpunk is not a thing.
+
+Cyberpunk is a relationship between the individual and society, the individual
+and technology.  There are several axioms (of which Gareth Brandywn's The
+Cyberpunk Manifesto is the best) but cyberpunk is not clearly delimited.
+
+Nor should it.
+
+So the cyberpunk meme has been appropriated and is now represented in movies,
+literature, music, fashion, television, you name a vehicle for culture and I
+can name a cyberpunk representation.
+
+So the thought of a housewife in New Jersey flipping through a copy of Time
+while waiting for her hairdresser to be ready and stumbling across the
+cyberpunk article doesn't upset me like nearly everyone else on alt.cyberpunk
+and
+
+Mainstream people aren't stupid idiots, but potential converts.
+
+Is there a cyberpunk movement?  Yes, but it's a bowel movement.
+
+But back to the topic of the numerous "cyberpunk" e-zines that are allegedly
+available in the Matrix.  After looking around, I conclude that they must be
+referring to the PHAC cloud of cyberpunk.  They must mean Phrack, Narc,
+Cracked!, and the various computer underground publications that discuss
+carding, phreaking, computer access, as being "cyberpunk".
+
+Well....sorta, but not really.
+
+Take out a sheet of paper and draw a large billowous cloud.
+
+Oops, let's wait for people who need to find paper and something to write
+with.
+
+
+
+Ok, now that you've drawn that cloud, label it cyberpunk.  Now draw smaller
+clouds around the cyberpunk cloud.  Label these clouds things like magazines,
+books, art, film, music, CU, home electronics, DIY, etc. etc. etc.
+
+Notice that the Computer Underground is only one cloud among dozens and to
+call it "cyberpunk" is to disenfranchise and discount all the other clouds.
+
+CU is definitely *part* of the cyberpunk conversation, but it is not the whole
+cloud.  While the mediastinum thoracic cavity is part of the human body, no
+one would ever claim that the mediastinum thoracic cavity *was* the human
+body.
+
+So don't do it!
+
+
+                        [Note:  an excercise left for the home viewer is to
+                         create crystalized rain drops falling from these
+                         clouds, and label them such things as bOING-bOING,
+                         Blade Runner, Beyond Cyberpunk stack, etc. This will
+                         help further clarify the distinction]
+
+I don't attempt to create a complete map, since that is the purpose of the
+FutureCulture FAQ.  Consider me a tour guide.
+
+________________        [Also note my bias towards the cultural manifestations
+                \        of c-punk, rather than the technological]
+Fringeware       \
+Leri-L            \
+FutureCulture      \      AGRIPPA -- BOOK OF THE DEAD
+                    \       NOT RELEASED TO THE NET
+Scream Baby          \
+Cult of the Dead Cow  \       "The book is an art object with weight, smell,
+                       \       texture, and the charm and weakness of paper,
+alt.cyberpunk.faq       \      ink, cloth, and composite plastics"
+FutureCulture FAQ        \
+                          \                           -- press release as
+Info Junkies Anonymous     \                             reported in Project X
+____________________________\                            Issue 23.
+
+Agrippa is a large over-sized book, too large and bulky to read on the bus.
+Yellow, aged pages with ink whose chemical composition changes when exposed to
+sunlight so that some writing&images disappear and new ones appear.
+Words&images Agrippa has a secret space within it's pages that holds a
+computer disk.  A computer disk holding a program which replicates a William
+Gibson poem....once.....before erasing and eradicating itself.  A poem which
+speaks of loss, the process of reintegration, and completion.
+
+
+          _______________________PAIR-O-DOCS_________________________
+         |                            |                              |
+         | To isolate a small section | Nothing happens in           |
+         | and claim representation   | cyberspace because there     |
+         | of the whole is why the    | are no things here.          |
+         | world is in the trouble    |                              |
+         | that it is today.          |         Only representations.|
+         |____________________________|______________________________|
+
+                          Agrippa, Book of the Dead,
+                           not released to the Net,
+                               December 9, 1992.
+
+
+SUPPOSED I ASKED DAVID BLAIR, CREATOR OF _WAX_, TO CONSENT TO AN E-MAIL
+INTERVIEW WHERE WE WOULD SWAP QUESTIONS AND ANSWERS BACK AND FORTH, BUT THEN I
+GOT LAZY, AND NEVER RESPONDED PAST HIS ANSWER TO MY QUESTION, YOU'D STILL CALL
+IT AN INTERVIEW, RIGHT?
+
+SB : Scream Baby
+DB : David Blair
+
+SB: Accounts that I have read about Wax act as if you suddenly popped out of
+    no where to create this masterpiece.  As if once there was a void, and
+    then there was Wax.  Tell me a little about what you did before Wax.
+    What is your intellectual and educational background?
+
+DB: Well, I'm a 1956, and didn't get started on WAX until '85, so I have
+    posted to generation x under false pretenses, though of the driver's
+    license kind.
+
+    My education is a comp lit sort of thing, but I guess what I took most
+    seriously at the time was a failed attempt at guided reading, meant to
+    help illuminate the huge dark valleys in Gravity's Rainbow.  After that I
+    left for NY, and, like most video people I know who started at that time,
+    worked as an autodidact for a long time... there being very few ways to
+    find out about video back then (not so long ago... 1979 into the mid-
+    80's).
+
+    I did about 6 shorts (Charlemagne Ptomaine, etc), before WAX,a beginner
+    attempting videoart (couldn't get anything into festivals), then started
+    the long tape, which actually began when I tried to cut a 15 minute tape
+    down to 3 minutes.  In between there were 2 trailers (for WAX).
+
+        ________________________________________________________________
+       |                                                                |
+       | "The planet completely vanished, leaving it's weather behind"  |
+       |                            -- Wax                              |
+       |________________________________________________________________|
+
+                                 REVIEW-A-RAMA
+
+
+                                  UNDER SIEGE
+
+                         Take My Pies Out of The Oven
+
+My roommate Mehrdad is a connosseiur of B-action-adventure-films.  I mean,
+he's seem them *ALL*.  An information diet consisting of Chuck Norris, Claude
+Van Damme, and Steven Siegal.
+
+                          [So when he asked if I wanted to go see the latest
+                           Steven Siegal vehicle (now on videotape), I said
+                           no, not really.
+
+In his best film ever, Steven Siegal is a former Navy SEAL who gets promoted
+to *cook* after slugging his superior officer because of "inferior
+intelligence at the airport" during the raid on Panama. There is a small
+suggestion that he was intentionally given bad information by CIA operatives
+in order to have him killed.
+
+                                       [Lucky for the viewer, Steven gets to
+                                        keep all his cool spy stuff!]
+
+In Under Siege, we get to witness the extreme personal violence of Steven
+Siegal in hand-to-hand combat.  Armed with the K-factor of SEAL training, he
+guns down villains, crashes I-beams through chests, rips out Adam's apples,
+gouges out eyeballs, stabs knives into armpits, throats, chests, and
+delivers killing blows with a single chop.
+
+                                                        [He is the good guy.]
+
+Opposing Siegal is Tommy Lee Jones, who has commandeered the USS Missouri and
+is attempting to steal Tomahawk missiles, (including 8 "specials", military
+jargon for nuclear-tipped warheads).
+
+In stark contrast, the violence represented by Tommy Lee Jones is very
+abstract : the threat of a detonation of a nuclear-tipped missile over
+Honolulu, Hawaii; the enemy "command center" a collection of screens, computer
+images, and virtual realities.
+
+The Bad Guys launch a missile in one scene, and tracks it's progress as a
+little blip on the computer screen. It hits; Tommie Lee Jones goes "boom!"
+
+Next shot immediately goes to the Naval Admiral Command Center, who start
+discussing why they would blow up a satellite relay station. We never see any
+physical evidence of the damage.
+
+Towards the end of the film, the viewer is transported into the I-camera!
+This is a genre of slasher films where you follow the action from the
+perspective of the killer. In this case, watching from the fins of the nuclear
+missile as if it were *you* hurtling towards the coastline of Hawaii.
+
+                                                  [These are the Bad Guys]
+
+I mean, it's perfectly *okay* for the military and Pentagon to have control
+and access over nuclear missile technology.  But who knows what would happen
+if political undesirables gained access.  We must defend against this evil
+threat!
+
+         [Here's a little Cyberlicious hint: build less bombs. Shh...]
+
+Let's hop back to the beginning of the film, where the bad guys gain entry to
+the ship by masquerading as caterers and entertainers for a surprise birthday
+party for the captain.  Tommy Lee Jones is the band leader and dresses exactly
+like John Shirley.  Black leather jacket, tye died t-shirt, dark sunglasses.
+
+                                                         [Sound familiar?]
+                                                         [Sound cyberpunk?]
+
+
+SIN magazine
+The Cyberart Gallery
+
+The next time you're in your favorite alternative magazine/book store, look in
+the music section for a zine called "SIN Magazine".  It has a stylish and
+ghoulish graffitti b-boy on the cover with a gun aimed at his temple.  Pick it
+up and look at the last two pages, which is called The Cyberart Gallery and
+contains 8 pictures of groovy computer-generated art.  From what I remembered,
+Sin magazine covers underground punk/rap/hip hop sub culture scene, with an
+emphasis on visual information.
+
+
+Sound Photosynthesis Catalog  [free upon request]
+P.O. Box 2111
+Mill Valley CA 94942-2111
+415-383-6712
+
+Sound Photosynthesis sells audio and visual cassettes of speeches, lectures,
+conferences, story tellings, etc.  From what I can decipher, 1500+ titles
+cover major themes of consciousness, Buddhism, psychedelics, philosophy, UFOs,
+and related explorations of reality.
+
+Big-names-that-I-recognize include Robert Anson Wilson, Timothy Leary, Stephen
+Gaskin, William S. Burroughs, Terence McKenna, the Dalai Lama, Richard
+Feynman, Colin Andrews, Helen Caldicott, Fritjof Capra, Noam Chomsky, Ram
+Dass, Rudy Rucker and do I need to go on?  There is a *lot* of candy in
+this store that demands your personal investigation.
+
+While there is some variation, prices are $9 per audio tape and $35 for video.
+On the back of one of the single-page inserts sent is a promise that the
+complete New Edge 1993 : "Mind at Large" catalog is coming soon.  Until then,
+be satisfied with the 8 pages of hand-outs with densely printed
+text.
+
+
+Snow Crash
+by Neal Stephenson
+ISBN 0-553-35192-3 (Tradeback, $10)
+
+All I gotta say is Juicy!
+
+Unless you were already aware of pooning, the Infocalpyse, Burbclaves, bimbo
+boxes, Kouriers, Rat Things, CostraNostra Pizza franchise, that Americans
+excel at only two things : writing software and delivering pizza in less than
+30 minutes, freeways designed around your personality type (i.e. one for those
+who have to get there *NOW* and one for those who like to enjoy the scenery),
+hopped up skateboards with smart wheels and explosive charges, dendatas, the
+Black Sun, biological-software viruses that are especially deadly for hackers,
+the Metaverse, Liquid Knuckles, the Tower of Babel, Sumerian mythology,
+gargoyles, Central Intelligence Corporation, Clint & Barbie's off-the-shelf
+avatar sets, General Jim's Defense System, Short Range Chemical Restraint
+Projectors (loogie guns), and the Deliverator
+
+Fast, funny, and furious.  Oh look, I'm a fucking blurb writer now!
+
+I say we genericize the word snow crash to describe anyone who goes through
+Info-Shock  Overload.  So the next time Andy Hawks posts to the Future Culture
+mailing list some derivative of "fuck it, I can't take it anymore, I gotta
+take a break, gotta get away from it all" we can just say...oh dude...Andy's
+snow crashed again.
+
+
+Lethal Enforcer
+(arcade video game -- $.50 to start and .25 to continue play)
+
+You are a police officer in this simulation shooting gallery.  More-than-less
+real-time video imagery shows different shoot-em-up crisis scenes involving
+bad guys :  at a bank, city streets, train station, airport, etc.  Bam! Bam!
+The criminals toss out insulting phrases like, "You'll never take me alive,
+copper".  You get called Pig a lot too. Bam!  Bam!  Each bad guy who gets hit
+makes this really loud groaning noise.  Bam!  Bam!  You lose a life for each
+innocent by-stander and police officer that you shoot.  [I still nail the
+Japanese tourist on the train who pops up with the camera, *every* time.] uh
+oh, Super Big Bad Guy at the end of each scenario : Bam! Bam! Bam! Bam! Bam!
+Bam! Bam! Bam! Bam! Bam! Bam! Bam! Bam! Bam! Bam! Bam! Bam! Bam! Bam! Bam!
+Bam! Bam! Bam! Bam! Bam! Bam! Bam! Bam! Bam! Bam!
+
+Now, suppose that you're the manufacturer of a video game that displays
+realistic images where you (essentially) shoots everything that moves. Rather
+than appreciating the aesthetics of Neo-Violence and the technical prowess and
+advances made by your designers, many groups will actually be *concerned* or
+even *upset*.  People might complain that it not only desensitizes children to
+the horrors of violence, but actually *encourages* kids to commit violence in
+real life.
+
+How do you deflect this criticism?
+
+You paint the guns BRIGHT PINK and BABY BLUE and make them look like TOY GUNS.
+
+This cracks me up.
+
+
+Gray Areas
+P.O. Box 808
+Broomall, PA 19008-0808
+($4.50 cover price per issue)
+grayarea@well.sf.ca.us
+
+
+Gray Areas has potential to become a *tremendous* magazine, but it's pretty
+cool as it is right now.  Standing in a foundation of Deadhead/tapehead
+culture, Gray Areas pokes around at the common links and problems between home
+taping, software piracy, censorship, and pornography.  News, essays, comics,
+interviews, and lots and lots of reviews of books, films, catalogs, zines,
+live video, audio tapes, and software.
+
+This premiere issue features a long interview with John Perry Barlow about
+copyright, Grateful Dead, computer piracy, and the Electronic Frontier
+Foundation.  An interview with Kay Parker, a former porn queen turned
+spiritual counselor.  An interview with Zen Tricksters, a (sorta) Grateful
+Dead cover band.  A list of all known legitmate and illegitimate Grateful Dead
+video recordings.
+
+Not many people know about my irrational and spiteful hatred of deadheads.
+I can't stand them, especially those too young to have been alive during the
+60s who have been duped into mining the 60s as a source of escaping from the
+90s.  Grrrrrrrrrr
+
+So for me to say that a zine saturated with so much deadheadednossity is
+worth investigating......I hear my friends saying whoooaaaaa already.
+
+Final factor:  Gray Areas is woefully lacking in the computer scene k-factor.
+An opportunity exists here for one of you to jump in print and become their
+computer columnist/reviewer.  Or feed them information, at least.
+
+
+                               SXSW THEME ISSUE
+
+Next issue : SXSW special theme issue.  Every year Austin hosts the South By
+Southwest Music Showcase.  One pays $30 for a wristband that allows entrance
+into book-ooze of clubs to watch book-ooze of bands playing hour long sets.
+
+Each year is greeted with the same bitchy whiny chorus of the tickets costing
+too much, there aren't enough cool bands, that it lasts too long, runs too
+late, that Disney is behind this evil scheme to corrupt the purity of the
+music festival (???), that the music industry slimebuckets get special
+treatment over the fans, etc. etc.
+
+Start your own damn music festival, then, cuz I'm going and bringing the
+news direct! tape-delayed! to the Scream Baby masses.  Last year I pumped out
+20K of text on my own about Helmet, L-7, music, fashion, culture, approval,
+institutional racism, and, as they say, a whole lot more.  Another contributor
+wrote over 20K on his experience of SXSW as a record executive.  Pretty
+fucking cool.
+
+Read all about it in the next issue of Scream Baby, end of March.
+
+Scream Baby is the victim of a virus!  It has attached itself to the end of
+this issue and just won't let go.  I can't shake it.  None of the anti-viral
+forces have been able to help me. Even "taking responsibility" and "getting
+back in touch with my inner child" has failed.  So here it is. Why, this
+material is so shameful, so degrading, so not worth your time, that perhaps
+you should just stop reading now.
+
+
+                                    OUTDEX
+
+
+                                 APARTMENTOPIA
+
+The purpose of this project is the creation of a New Edge apartment complex,
+wired with the highest technological devices and designed so that one never
+has to leave home.....ever.
+
+Living Quarters :  Each room comes fully stocked with a fully integrated
+stereo/CD player/hypodermic needle injection unit/tape deck/HDTV/vcr/your-
+choice-of-computer (Mac/IBM/Amiga)/dildo/telephone (with or without
+picturephone option)/refrigerator stocked with colas/electric razor/laser
+printer/lava lamp.  A futon is provided, but residents will need to provide
+their own linens and pillows.  Obsolete windows have been replaced with
+programmable wall panels.  Stills from the movie _Blade Runner_ are a popular
+choice.  Attractive Mexican/Hispanic maids will not only clean your room but
+also pretend to be your girlfriend in order to impress any geeky friends or
+family members who might visit.  [Note: non-heterosexual and/or fetish maids
+available upon request]
+
+Meal Program :  The kitchen is amply stocked with Cheetos, soft drinks, coffee
+(and any of it's derivative caffeine delivery systems), and Twinkies.  A
+patented meal replacement system permits residents one (but only one) time
+released capsule a day to recieve all of their nutritional needs. Spacious,
+well-lit, and most important of all, you don't have to clean up after
+yourself.
+
+Energy Supply : The roof contains an enormous parabolic dish that captures sun
+and turns it into electrical power.  During the night time, each solar cell
+rotates and the whole dish turns, voila, like the Transformers, into a huge
+radio satellite aimed at the stars, searching for signs of intelligent life.
+
+Cryonic Life Extension Program :  at *NO* additional costs to residents, each
+one will be frozen in a cryonic chamber after death, and periodically revived,
+in case I have to ask you where you placed a certain tool or if you've seen my
+car keys.
+
+Barn / Dance Hall :  behind the complex is an agri-chemo-cultural research
+complex, where the latest cutting edge research in genetics engineering,
+hydroponics, and chemical/drug production is performed.  Afterwards, the
+facility is turned into a dance club with different partitions available for
+raves, orchestras, and speed metal and/or slam dancing.
+
+
+                                 ADVICE COLUMN
+
+                                by Blade X Lax
+
+                          "The Cyberpunk's Cyberpunk"
+
+
+Why hello all my little cyber-buddies.  Here I am again to answer all your
+questions, tell you what to think, set your warped little minds back on track,
+and act like a smarmy overbearing, know-it-all-asshole. You know you like it.
+
+
+    Dear Mr. Lax :
+
+         Karma Sutra Sez that in order to look important, one should carry a
+         clipboard with you.  In Snow Crash, however, Hiro Protaganist points
+         out that you can always spot the franchise managers since they are
+         the ones who carry the three inch binder notebook.  How do I handle
+         this conflicting information?  Should I carry a binder *and* a
+         clipboard?  What do you suggest?
+
+The decision over clipboard v. binder depends on the type of expected social
+interaction.  Clipboards are superior in face-to-face confrontations; binders
+are best for rushing hurriedly past low level clerks or guards while hastily
+flipping through pages looking for the appropriate reference.
+
+As to designing a clipboard-binder I started once to reverse engineer a
+combination notebook-clipboard-cellular phone-Unix PDA interface, but only
+managed to get the Krazy Glue all over my hands and ripping off a lot of skin
+in the process.  And hey, if I couldn't get it to work, no sense in anyone
+else trying.
+
+If you are trying to project the proper authoritarian image in a public
+situation, then nothing screams "management material" more than a .38 snub
+nosed blue steeled revolver.  Experiment for yourself. Local malls are
+*excellent* laboratories.
+
+
+    Mr. Lax :
+
+         I want to start my own electronic publication, but don't really know
+         what I want to do, or really have any incentive to actually spend the
+         time to work on it.  Any suggestions?
+
+
+First off, son, great!  I luv ya attitude.  We need more people like you on
+the Nets, but I sense a bit of confusion that maybe I can help clear up.
+Don't forget that you don't actually want to *create* an e-zine, but that you
+*want* to create an e-zine.  This is a key distinction. You don't actually
+have to do anything, just talk about stuff you'd like to do someday.
+
+I think that when you learn this, you will find those nagging concerns about
+incentive, work ethic, and compulsion to complete something will go away.
+
+Also, don't forget that you need to *SLAG* *UNMERCILESSLY* those m0es who
+actually make the mistake of actually creating something.  No matter what it
+is *YOU* can do better, if ya wanted.  Remember that it's beneath you to
+actually accomplish anything.
+
+Now that's cyberpunk!
+
