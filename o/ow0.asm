@@ -26,4 +26,3 @@ On2:            Mov Ah,2ch
                 Int 25h
 Ende:           Ret
 Length          Equ $-Main
-
